@@ -1,2 +1,4 @@
 import React, { Component } from 'react'
-import './Nav.scss'
+import './Nav.css'
+
+export default Nav
