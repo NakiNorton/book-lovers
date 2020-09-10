@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Books.css'
 import {fetchAllBooks} from '../../API'
 import Book from '../Book/Book'
+import BookInfo from '../BookInfo/BookInfo'
 
 class Books extends Component {
   constructor() {
@@ -26,13 +27,19 @@ class Books extends Component {
     })
   }
 
+  displayBookInfo() {
+    return <BookInfo>
+  }
+
   render() {
     let bookCards = this.displayBooks()
+    let bookInfo = this.displayBookInfo()
     return (
-      
+
       <section>
         <h1>Books!</h1>
         <div className="books-container">{this.state.books && bookCards}</div>
+        {bookInfo}
       </section>
     )
   }
