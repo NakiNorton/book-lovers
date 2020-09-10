@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Books.css'
 import {fetchAllBooks} from '../../API'
+import Book from '../Book/Book'
 
 class Books extends Component {
   constructor() {
@@ -12,14 +13,26 @@ class Books extends Component {
 
   componentDidMount() {
     fetchAllBooks()
-      // .then(data => console.log(data))
-      .then(data => this.setState({books: data}))
+      .then(data => {
+        console.log(data)
+        this.setState({books: data.results.books})
+      })
       .catch(error => alert(error.message))
   }
 
+  displayBooks() {
+    return this.state.books.map(book => {
+    return <Book book={book} />
+    })
+  }
+
   render() {
+    let bookCards = this.displayBooks()
     return (
-      <section>Books!</section>
+      <section>
+        <h1>Books!</h1>
+        {this.state.books && bookCards}
+      </section>
     )
   }
 }
