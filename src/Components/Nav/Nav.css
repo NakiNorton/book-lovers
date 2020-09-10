@@ -1,0 +1,39 @@
+.Nav {
+  height: 8em;
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+
+nav ul {
+  float: right;
+  margin-right: 20px;
+}
+
+nav ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+
+.nav-link {
+  /* text-transform: uppercase; */
+  font-size: 26px;
+  font-weight: 600;
+  color: teal;
+  padding: 0.5em 1.2em;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.active:hover {
+  background: whitesmoke;
+  transition: 0.5s;
+}
+
+label {
+  color: teal;
+  font-size: 58px;
+  line-height: 2.2em;
+  padding: 0.5em;
+  font-weight: 600;
+}
