@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './Book.css'
 
 
-const Book = ({book, addBook, isOnList}) => {
+const Book = ({ book, addBook }) => {
   return (
     <section class="book-card-section">
         <h1>{book.title}</h1>
