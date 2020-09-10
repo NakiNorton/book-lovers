@@ -9,14 +9,14 @@ class Books extends Component {
     super()
     this.state = {
       books: [],
-      searchedBooks: []
+      foundBooks: []
     }
   }
 
   componentDidMount() {
     fetchAllBooks()
       .then(data => {
-        console.log(data)
+        // console.log(data)
         this.setState({books: data.results.books})
       })
       .catch(error => alert(error.message))
@@ -29,28 +29,28 @@ class Books extends Component {
   }
 
   searchBooks = (search) => {
-    console.log("HERE", search)
-    // let split = search.split('')
-    // console.log("split", split)
-    let searchCase = search;
-
-    let foundBooks = this.state.books.filter(book => {
-      if (book.title.includes(searchCase) || book.author.includes(searchCase)) {
-        this.setState({searchedBooks: book})
+    let findBooks = this.state.books.filter(book => {
+      if (book.title.includes(search) || book.author.includes(search)) {
+        this.setState({foundBooks: [book]})
       }
     })
-    console.log("found", this.state.searchedBooks)
-    console.log("foundBooks",foundBooks)
-    return foundBooks;
+    return findBooks;
   }
+
+  // <section className="found-book-cards" alt="found-book-cards">
+  //       {this.state.foundBooks.length > 0 ?
+  //         this.state.foundBooks.map(foundBook => {
+  //           return <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={book.book_image} />
+  //           }) : <h1>Search For Book by Title or Author</h1>
+  //        }
+  //     </section>
 
   render() {
     let bookCards = this.displayBooks()
     return (
       <section>
-        <h3>{this.state.searchedBooks}/></h3>
         <h1>Books!</h1>
-        <Search searchBooks={this.searchBooks}/>
+      <Search searchBooks={this.searchBooks}/>
         <div className="books-container">{this.state.books && bookCards}</div>
       </section>
     )
