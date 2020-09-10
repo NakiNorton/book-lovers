@@ -9,7 +9,8 @@ class Books extends Component {
   constructor() {
     super()
     this.state = {
-      books: []
+      books: [],
+      toReadList: [],
     }
   }
 
@@ -22,10 +23,36 @@ class Books extends Component {
       .catch(error => alert(error.message))
   }
 
+  changeButtonStyling(id) {
+    const allButtons = document.querySelectorAll('.reading-list-button')
+    const foundButton = Array.from(allButtons).find(button => button.id === id)
+    if(foundButton.classList.contains('active')) {
+      foundButton.classList.remove('active')
+      foundButton.classList.add('inactive')
+    } else if (foundButton.classList.contains('inactive')) {
+      foundButton.classList.remove('inactive')
+      foundButton.classList.add('active')
+    }
+  }
+
+  handleClick = (event) => {
+    const id = event.target.id;
+    const foundBook = this.state.books.find(book => book.primary_isbn10 === id);
+    const isOnList = this.state.toReadList.includes(foundBook)
+
+    if(!isOnList) {
+      this.setState( { toReadList: [...this.state.toReadList, foundBook] } )
+      this.changeButtonStyling(id)
+    } else {
+      const newList = this.state.toReadList.filter(book => book !== foundBook)
+      this.setState( { toReadList: newList } )
+      this.changeButtonStyling(id)
+    }
+  }
+
   displayBooks() {
-    return this.state.books.map(book => {
-      console.log(book.primary_isbn10)
-    return <Book book={book} />
+    return this.state.books.map(book => { 
+      return <Book book={book} addBook={this.handleClick}/>
     })
   }
 
