@@ -9,7 +9,16 @@ class Search extends Component {
     }
     console.log("props", props)
   }
-  
+
+  changeHandler = (event) => {
+    this.setState({search: event.target.value})
+  }
+
+  searchBookInput = (event) => {
+    event.preventDefault()
+    this.props.searchBooks(this.state.search)
+    this.setState({search: ''})
+  }
 
   render() {
     return (
