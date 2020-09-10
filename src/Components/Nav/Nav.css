@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+.Nav {
+  height: 8em;
+  width: 100%;
+  border-bottom: 1px solid #bea8A7; 
+  background-color: whitesmoke;
+}
+
+nav ul {
+  float: right;
+  margin-right: 20px;
+}
+
+nav ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+
+.nav-link {
+  font-family: 'Amatic SC', cursive;
+  font-size: 46px;
+  font-weight: 500;
+  color: teal;
+  padding: 0.2em 0.2em;
+  border-radius: 5px;
+  margin-right: 0.8em;
+  text-decoration: none;
+}
+
+.active:hover {
+  background:  #F4DBD8;
+  transition: 0.5s;
+}
+
+label {
+  font-family: 'Amatic SC', cursive;
+  color:  teal; 
+  font-size: 72px;
+  line-height: 1.8em;
+  padding: 0.3em;
+  font-weight: 600;
+}
+
+.icon {
+  height: 58px;
+  padding-left: 1.5em;  
+}
+
+
+/* <div>Icons made by <a href="http://www.pixelinspired.com/" title="Zlatko Najdenovski">Zlatko Najdenovski</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */
+
