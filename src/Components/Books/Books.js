@@ -4,24 +4,26 @@ import {fetchAllBooks} from '../../API'
 import Book from '../Book/Book'
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class Books extends Component {
   constructor() {
     super()
     this.state = {
-      books: [],
+      // books: [],
       toReadList: [],
     }
   }
-
-  componentDidMount() {
-    fetchAllBooks()
-      .then(data => {
-        console.log(data)
-        this.setState({books: data.results.books})
-      })
-      .catch(error => alert(error.message))
-  }
+  // async componentDidMount() {
+  //   try{
+  //     const books = await fetchAllBooks()
+  //     console.log(books.results.books)
+  //     setBooks(books.results.books)
+  //   }
+  //   catch (error) {
+  //     alert(error)
+  //   }
+  // }
 
   changeButtonStyling(id) {
     const allButtons = document.querySelectorAll('.reading-list-button')
@@ -51,12 +53,13 @@ class Books extends Component {
   }
 
   displayBooks() {
-    return this.state.books.map(book => { 
+    return this.props.books.map(book => { 
       return <Book book={book} addBook={this.handleClick}/>
     })
   }
 
   render() {
+    const { books } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
@@ -84,4 +87,8 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export const mapStateToProps = ({ books }) => ({
+  books
+})
+
+export default connect(mapStateToProps)(Books);
