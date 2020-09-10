@@ -29,9 +29,10 @@ class Books extends Component {
   render() {
     let bookCards = this.displayBooks()
     return (
+      
       <section>
         <h1>Books!</h1>
-        {this.state.books && bookCards}
+        <div className="books-container">{this.state.books && bookCards}</div>
       </section>
     )
   }
