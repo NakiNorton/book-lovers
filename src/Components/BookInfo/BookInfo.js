@@ -1,2 +1,5 @@
-import React from 'react';
-import './BookInfo.scss'
+import React, { Component } from 'react'
+import './BookInfo.css'
+
+
+export default BookInfo
