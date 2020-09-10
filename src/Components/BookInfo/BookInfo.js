@@ -1,19 +1,22 @@
 import React from 'react'
 import './BookInfo.css'
+import { Link } from 'react-router-dom';
 
 const BookInfo = ({ book }) => {
   return (
     <section className="book-info">
-      <img className="Book-card-image" alt="Book cover" src={book.book_image} />
-      <div className="title-and-author">
+      <img className="book-image" alt={book.title} src={book.book_image} />
+      <div className="title-and-author text-box">
         <h1>{book.title}</h1>
         <h3>{book.author}</h3>
       </div>
-      <div className="description">
+      <div className="description text-box">
         <p>{book.description}</p>
       </div>
-      <button>Add to Reading List</button>
-      <a href={book.amazon_product_url} target="_blank"><button>Purchase here!</button></a>
+      <div className="button-container">
+        <button className="add-to-reading-list">Add to Reading List</button>
+        <a href={book.amazon_product_url} target="_blank"><button className="purchase">Purchase</button></a>
+      </div>
     </section>
   )
 }
