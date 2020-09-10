@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './Books.css'
 import {fetchAllBooks} from '../../API'
 import Book from '../Book/Book'
+import BookInfo from '../BookInfo/BookInfo'
+import { Route, Switch } from 'react-router-dom';
 
 class Books extends Component {
   constructor() {
@@ -57,11 +59,27 @@ class Books extends Component {
   render() {
     let bookCards = this.displayBooks()
     return (
-      
-      <section>
-        <h1>Books!</h1>
-        <div className="books-container">{this.state.books && bookCards}</div>
-      </section>
+      <Switch>
+        <Route
+          exact
+          path='/'
+          render= {() => {
+            return <section>
+                <h1>Books!</h1>
+                <div className="books-container">{this.state.books && bookCards}</div>
+              </section>
+          }}
+        />
+        <Route
+          path='/:bookId'
+          render={({ match }) => {
+            const bookClicked = this.state.books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
+            console.log(match.params.bookId)
+            console.log(bookClicked)
+            return <BookInfo book={bookClicked} />
+          }}
+        />
+      </Switch>
     )
   }
 }
