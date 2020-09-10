@@ -1,4 +1,6 @@
 import { books } from './Books'
 import { combineReducers } from 'redux'
 
-export const rootReducer = combineReducers({ books })
+export const rootReducer = combineReducers({ 
+    books,
+})
