@@ -7,7 +7,8 @@ class Books extends Component {
   constructor() {
     super()
     this.state = {
-      books: []
+      books: [],
+      toReadList: [],
     }
   }
 
@@ -20,9 +21,22 @@ class Books extends Component {
       .catch(error => alert(error.message))
   }
 
+  handleClick = (event) => {
+    const id = event.target.id;
+    const foundBook = this.state.books.find(book => book.primary_isbn10 === id);
+    const isFavorite = this.state.toReadList.includes(foundBook)
+
+    if(!isFavorite) {
+      this.setState( { toReadList: [...this.state.toReadList, foundBook] } )
+    } else {
+      const newList = this.state.toReadList.filter(book => book !== foundBook)
+      this.setState( { toReadList: newList } )
+    }
+  }
+
   displayBooks() {
     return this.state.books.map(book => {
-    return <Book book={book} />
+    return <Book book={book} addBook={this.handleClick} />
     })
   }
 
