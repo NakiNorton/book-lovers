@@ -7,7 +7,6 @@ class Search extends Component {
     this.state = {
       search: ''
     }
-    console.log("props", props)
   }
 
   changeHandler = (event) => {
