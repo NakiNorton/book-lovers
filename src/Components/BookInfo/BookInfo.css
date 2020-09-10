@@ -1,0 +1,36 @@
+.book-info {
+  background-color: seashell;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.text-box {
+  background-color: white;
+  border: 1px solid turquoise;
+  margin: 20px;
+}
+
+.book-image {
+  grid-area: 1 / 1 / 4 / 2;
+}
+
+.title-and-author {
+  grid-area: 1 / 2 / 2 / 4;
+}
+
+.description {
+  grid-area: 2 / 2 / 3 / 4;
+}
+
+.button-container {
+  grid-area: 3 / 2 / 4 / 4;
+  display: flex;
+  margin: auto
+}
+
+button {
+  height: 50px;
+  margin: 20px;
+  width: 100px;
+}
