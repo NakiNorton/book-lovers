@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
 .book-info {
   background-color: seashell;
   display: grid;
@@ -29,8 +31,20 @@
   margin: auto
 }
 
-button {
+.add-to-reading-list, .purchase {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  color: teal;
+  font-family: 'Amatic SC', cursive;
+  font-size: 24px;
+  font-weight: 500;
   height: 50px;
   margin: 20px;
+  text-decoration: none;
   width: 100px;
+}
+
+.add-to-reading-list:hover, .purchase:hover {
+  background:  #F4DBD8;
+  transition: 0.5s;
 }
