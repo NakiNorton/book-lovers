@@ -5,25 +5,28 @@ import Book from '../Book/Book'
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { setBooks } from '../../actions';
+import { bindActionCreators } from 'redux';
 
 class Books extends Component {
   constructor() {
     super()
     this.state = {
-      // books: [],
       toReadList: [],
     }
   }
-  // async componentDidMount() {
-  //   try{
-  //     const books = await fetchAllBooks()
-  //     console.log(books.results.books)
-  //     setBooks(books.results.books)
-  //   }
-  //   catch (error) {
-  //     alert(error)
-  //   }
-  // }
+
+  async componentDidMount() {
+    const { setBooks } = this.props;
+    console.log(this.props)
+    try{
+      const books = await fetchAllBooks()
+      setBooks(books.results.books)
+    }
+    catch ({ message }) {
+      alert(message);
+    }
+  }
 
   changeButtonStyling(id) {
     const allButtons = document.querySelectorAll('.reading-list-button')
@@ -39,7 +42,7 @@ class Books extends Component {
 
   handleClick = (event) => {
     const id = event.target.id;
-    const foundBook = this.state.books.find(book => book.primary_isbn10 === id);
+    const foundBook = this.props.books.find(book => book.primary_isbn10 === id);
     const isOnList = this.state.toReadList.includes(foundBook)
 
     if(!isOnList) {
@@ -69,16 +72,14 @@ class Books extends Component {
           render= {() => {
             return <section>
                 <h1>Books!</h1>
-                <div className="books-container">{this.state.books && bookCards}</div>
+                <div className="books-container">{books && bookCards}</div>
               </section>
           }}
         />
         <Route
           path='/:bookId'
           render={({ match }) => {
-            const bookClicked = this.state.books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
-            console.log(match.params.bookId)
-            console.log(bookClicked)
+            const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
             return <BookInfo book={bookClicked} />
           }}
         />
@@ -88,7 +89,13 @@ class Books extends Component {
 }
 
 export const mapStateToProps = ({ books }) => ({
-  books
+  books,
 })
 
-export default connect(mapStateToProps)(Books);
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    setBooks
+  }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Books);
