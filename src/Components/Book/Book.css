@@ -1,6 +1,7 @@
 .book-card-section {
-  border: 1px solid turquoise;
   background: white;
+  border: 1px solid turquoise;
+  border-radius: 10px;
 }
 
 .active {

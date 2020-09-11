@@ -19,12 +19,14 @@
 }
 
 .title-and-author {
+  border-radius: 10px;
   grid-area: 1 / 2 / 2 / 4;
 }
 
 .description {
-  grid-area: 2 / 2 / 3 / 4;
+  border-radius: 10px;
   display: flex;
+  grid-area: 2 / 2 / 3 / 4;
 }
 
 .desciption-text {
