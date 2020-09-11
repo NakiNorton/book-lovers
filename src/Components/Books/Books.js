@@ -5,24 +5,29 @@ import Book from '../Book/Book'
 import Search from '../Search/Search'
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { setBooks } from '../../actions';
+import { bindActionCreators } from 'redux';
 
 class Books extends Component {
   constructor() {
     super()
     this.state = {
-      books: [],
       foundBooks: [],
       toReadList: [],
     }
   }
 
-  componentDidMount() {
-    fetchAllBooks()
-      .then(data => {
-        // console.log(data)
-        this.setState({books: data.results.books})
-      })
-      .catch(error => alert(error.message))
+  async componentDidMount() {
+    const { setBooks } = this.props;
+    console.log(this.props)
+    try{
+      const books = await fetchAllBooks()
+      setBooks(books.results.books)
+    }
+    catch ({ message }) {
+      alert(message);
+    }
   }
 
   changeButtonStyling(id) {
@@ -39,7 +44,7 @@ class Books extends Component {
 
   handleClick = (event) => {
     const id = event.target.id;
-    const foundBook = this.state.books.find(book => book.primary_isbn10 === id);
+    const foundBook = this.props.books.find(book => book.primary_isbn10 === id);
     const isOnList = this.state.toReadList.includes(foundBook)
 
     if(!isOnList) {
@@ -53,17 +58,18 @@ class Books extends Component {
   }
 
   displayBooks() {
-    return this.state.books.map(book => { 
+    return this.props.books.map(book => { 
       return <Book book={book} addBook={this.handleClick}/>
     })
   }
 
   searchBooks = (search) => {
-    let findBooks = this.state.books.filter(book => {
+    let findBooks = this.props.books.filter(book => {
       if (book.title.includes(search) || book.author.includes(search)) {
         this.setState({foundBooks: [book]})
       }
     })
+    console.log(this.state.foundBooks)
     return findBooks;
   }
 
@@ -76,30 +82,36 @@ class Books extends Component {
   //     </section>
 
   render() {
+    const { books } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
         <Route exact path='/'render= {() => {
-            return (
+          return (
             <section>
               <h1>Books!</h1>
               <Search searchBooks={this.searchBooks}/>
-              <div className="books-container">{this.state.books && bookCards}</div>
+              <div className="books-container">{books && bookCards}</div>
             </section>
-            )
-          }
-          }
-        />
+          )
+        }} />
         <Route path='/:bookId' render={({ match }) => {
-            const bookClicked = this.state.books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
-            console.log(match.params.bookId)
-            console.log(bookClicked)
-            return <BookInfo book={bookClicked} />
-          }}
-        />
+          const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
+          return <BookInfo book={bookClicked} />
+        }} />
       </Switch>
     )
   }
 }
 
-export default Books;
+export const mapStateToProps = ({ books }) => ({
+  books,
+})
+
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    setBooks
+  }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Books);
