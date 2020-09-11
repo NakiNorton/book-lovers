@@ -4,14 +4,18 @@ import BookInfo from './BookInfo.js'
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Book Info Component', () => {
-  it('Should have the correct content when rendered', () => {
-    const book = {
+  let book;
+  beforeEach(() => {
+    book = {
       "description": "In a quiet town...",
       "title": "WHERE THE CRAWDADS SING",
       "author": "Delia Owens",
       "book_image": "https://s1.nyt.com/du/books/images/9780735219090.jpg",
       "amazon_product_url": "https://www.amazon.com/Where-Crawdads-Sing-Delia-Owens/dp/0735219095?tag=NYTBS-20",
     }
+  })
+
+  it('Should have the correct content when rendered', () => {
 
     render(
       <MemoryRouter>
@@ -32,5 +36,19 @@ describe('Book Info Component', () => {
     expect(description).toBeInTheDocument();
     expect(readButton).toBeInTheDocument();
     expect(purchaseButton).toBeInTheDocument();
+  })
+
+  it.skip('Should fire the correct function when read button is clicked', () => {
+    render(
+      <MemoryRouter>
+        <BookInfo book={book} />
+      </MemoryRouter>
+    )
+
+    const readButton = screen.getByRole('button', { name: 'Add to Reading List' })
+
+    fireEvent.click(readButton)
+
+    expect().toBeCalledTimes(1);
   })
 })
