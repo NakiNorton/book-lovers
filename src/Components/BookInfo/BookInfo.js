@@ -11,7 +11,7 @@ const BookInfo = ({ book }) => {
         <h3>{book.author}</h3>
       </div>
       <div className="description text-box">
-        <p>{book.description}</p>
+        <p className="desciption-text">{book.description}</p>
       </div>
       <div className="button-container">
         <button className="add-to-reading-list">Read</button>
