@@ -14,7 +14,7 @@ const BookInfo = ({ book }) => {
         <p>{book.description}</p>
       </div>
       <div className="button-container">
-        <button className="add-to-reading-list">Add to Reading List</button>
+        <button className="add-to-reading-list">Read</button>
         <a href={book.amazon_product_url} target="_blank"><button className="purchase">Purchase</button></a>
       </div>
     </section>
