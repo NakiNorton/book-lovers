@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Books.css'
 import {fetchAllBooks} from '../../API'
 import Book from '../Book/Book'
+import Search from '../Search/Search'
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
@@ -12,6 +13,7 @@ class Books extends Component {
   constructor() {
     super()
     this.state = {
+      foundBooks: [],
       toReadList: [],
     }
   }
@@ -61,28 +63,42 @@ class Books extends Component {
     })
   }
 
+  searchBooks = (search) => {
+    let findBooks = this.props.books.filter(book => {
+      if (book.title.includes(search) || book.author.includes(search)) {
+        this.setState({foundBooks: [book]})
+      }
+    })
+    console.log(this.state.foundBooks)
+    return findBooks;
+  }
+
+  // <section className="found-book-cards" alt="found-book-cards">
+  //       {this.state.foundBooks.length > 0 ?
+  //         this.state.foundBooks.map(foundBook => {
+  //           return <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={book.book_image} />
+  //           }) : <h1>Search For Book by Title or Author</h1>
+  //        }
+  //     </section>
+
   render() {
     const { books } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
-        <Route
-          exact
-          path='/'
-          render= {() => {
-            return <section>
-                <h1>Books!</h1>
-                <div className="books-container">{books && bookCards}</div>
-              </section>
-          }}
-        />
-        <Route
-          path='/:bookId'
-          render={({ match }) => {
-            const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
-            return <BookInfo book={bookClicked} />
-          }}
-        />
+        <Route exact path='/'render= {() => {
+          return (
+            <section>
+              <h1>Books!</h1>
+              <Search searchBooks={this.searchBooks}/>
+              <div className="books-container">{books && bookCards}</div>
+            </section>
+          )
+        }} />
+        <Route path='/:bookId' render={({ match }) => {
+          const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
+          return <BookInfo book={bookClicked} />
+        }} />
       </Switch>
     )
   }
