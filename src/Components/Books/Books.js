@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Books.css'
-import { fetchAllBooks } from '../../API'
+import { fetchBooks } from '../../API'
 import Book from '../Book/Book'
 import ReadingList from '../ReadingList/ReadingList'
 import Search from '../Search/Search'
@@ -21,7 +21,7 @@ class Books extends Component {
   async componentDidMount() {
     const { setBooks } = this.props;
     try {
-      const books = await fetchAllBooks()
+      const books = await fetchBooks('hardcover-fiction')
       setBooks(books.results.books)
     }
     catch ({ message }) {
