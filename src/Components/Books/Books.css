@@ -1,12 +1,10 @@
 .books-container {
-  display: grid;
-  grid-gap: 35px;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  background: seashell;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
 }
 
 .Book-card-image {
-  height: 22em;
+  height: 15em;
   width: auto;
 }
