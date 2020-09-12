@@ -11,10 +11,10 @@ const BookInfo = ({ book }) => {
         <h3>{book.author}</h3>
       </div>
       <div className="description text-box">
-        <p>{book.description}</p>
+        <p className="desciption-text">{book.description}</p>
       </div>
       <div className="button-container">
-        <button className="add-to-reading-list">Add to Reading List</button>
+        <button className="add-to-reading-list">Read</button>
         <a href={book.amazon_product_url} target="_blank"><button className="purchase">Purchase</button></a>
       </div>
     </section>
