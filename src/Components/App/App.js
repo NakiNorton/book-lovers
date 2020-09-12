@@ -8,7 +8,8 @@ class App extends Component {
     super();
     this.state = {
       lists: {
-        'hardcover-fiction': true
+        'hardcover-fiction': true,
+        'celebrities': true
       }
     }
   }
@@ -27,12 +28,10 @@ class App extends Component {
   }
 
   render() {
-    const allBooks = this.createBookLists()
-    console.log(allBooks)
     return (
       <div className="App">
         <Nav />
-        {allBooks}
+        {this.createBookLists()}
       </div>
     );
   }
