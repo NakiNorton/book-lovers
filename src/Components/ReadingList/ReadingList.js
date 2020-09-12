@@ -21,14 +21,14 @@ const ReadingList = ({ toReadList }) => {
       <section>
         <h3 className='no-books-msg'>You haven't added any books to your reading list yet. </h3>
         <div className='ani-container'>
-          <div class='tear1 tear'></div>
-          <div class='tear2 tear'></div>
-          <div class='face'>
-            <div class='eyebrow'>︶</div>
-            <div class='eyebrow'>︶</div>
-            <div class='eye'></div>
-            <div class='eye'></div>
-            <div class='mouth'></div>
+          <div className='tear1 tear'></div>
+          <div className='tear2 tear'></div>
+          <div className='face'>
+            <div className='eyebrow'>︶</div>
+            <div className='eyebrow'>︶</div>
+            <div className='eye'></div>
+            <div className='eye'></div>
+            <div className='mouth'></div>
           </div>
         </div> 
         </section>
@@ -39,17 +39,5 @@ const ReadingList = ({ toReadList }) => {
     </section>
   )
 }
-
-// export const mapStateToProps = ({ readingList }) => ({
-//   readingList,
-// })
-
-// export const mapDispatchToProps = dispatch => (
-//   bindActionCreators({
-//     setBooks
-//   }, dispatch)
-// )
-
-// export default connect(mapStateToProps)(ReadingList);
 
 export default ReadingList
