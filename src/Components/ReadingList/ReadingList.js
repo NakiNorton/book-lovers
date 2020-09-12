@@ -18,7 +18,21 @@ const ReadingList = ({ toReadList }) => {
     <section className='ReadingList'>
       <h1 className='page-title'>My Library</h1>
       {toReadList.length === 0 &&
-        <h3 className='no-books-msg'>You haven't added any books to your reading list yet :( </h3>}
+      <section>
+        <h3 className='no-books-msg'>You haven't added any books to your reading list yet. </h3>
+        <div className='ani-container'>
+          <div class='tear1 tear'></div>
+          <div class='tear2 tear'></div>
+          <div class='face'>
+            <div class='eyebrow'>︶</div>
+            <div class='eyebrow'>︶</div>
+            <div class='eye'></div>
+            <div class='eye'></div>
+            <div class='mouth'></div>
+          </div>
+        </div> 
+        </section>
+        }
       <section className="reading-list-section">
         {booksToRead}
       </section>
