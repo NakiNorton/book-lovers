@@ -29,7 +29,8 @@
   margin: auto
 }
 
-button {
+.add-to-reading-list,
+.purchase {
   height: 50px;
   margin: 20px;
   width: 100px;
