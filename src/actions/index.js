@@ -3,7 +3,12 @@ export const setBooks = (books) => ({
     books
 });
 
-export const addFavorite = (readingList) => ({
-  type: 'SET_READING_LIST',
-  readingList
+export const addFavorite = (book) => ({
+  type: 'ADD_TO_READING_LIST',
+  book
+})
+
+export const removeFavorite = (id) => ({
+  type: 'REMOVE_FROM_READING_LIST',
+  id
 })
