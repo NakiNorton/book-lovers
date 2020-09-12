@@ -14,4 +14,21 @@ describe('Search Componey', () => {
     expect(searchInput).toBeInTheDocument()
     expect(submitButton).toBeInTheDocument()
   })
+
+  it('should check input is clear after submit', () => {
+    const searchBooks = jest.fn();
+    render(<Search searchBooks={searchBooks} />)
+
+    const searchInput = screen.getByPlaceholderText('search')
+    const submitButton = screen.getByRole('button', {name: 'Search'})
+
+    expect(searchInput).toBeInTheDocument()
+    expect(submitButton).toBeInTheDocument()
+
+    fireEvent.change(searchInput, {target: {name: 'search', value: 'Anything'}})
+    expect(searchInput.value).toEqual('Anything')
+    fireEvent.click(submitButton)
+    
+    expect(searchInput.value).toHaveLength(0)
+  })
 })
