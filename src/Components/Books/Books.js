@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import './Books.css'
-import {fetchAllBooks} from '../../API'
+import { fetchAllBooks } from '../../API'
 import Book from '../Book/Book'
+import ReadingList from '../ReadingList/ReadingList'
 import Search from '../Search/Search'
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { setBooks } from '../../actions';
+import { setBooks, addFavorite } from '../../actions';
 import { bindActionCreators } from 'redux';
 
 class Books extends Component {
@@ -14,14 +15,12 @@ class Books extends Component {
     super()
     this.state = {
       foundBooks: [],
-      toReadList: [],
     }
   }
 
   async componentDidMount() {
     const { setBooks } = this.props;
-    console.log(this.props)
-    try{
+    try {
       const books = await fetchAllBooks()
       setBooks(books.results.books)
     }
@@ -33,7 +32,7 @@ class Books extends Component {
   changeButtonStyling(id) {
     const allButtons = document.querySelectorAll('.reading-list-button')
     const foundButton = Array.from(allButtons).find(button => button.id === id)
-    if(foundButton.classList.contains('active')) {
+    if (foundButton.classList.contains('active')) {
       foundButton.classList.remove('active')
       foundButton.classList.add('inactive')
     } else if (foundButton.classList.contains('inactive')) {
@@ -43,30 +42,29 @@ class Books extends Component {
   }
 
   handleClick = (event) => {
+    const { addFavorite } = this.props;
     const id = event.target.id;
     const foundBook = this.props.books.find(book => book.primary_isbn10 === id);
-    const isOnList = this.state.toReadList.includes(foundBook)
+    const isOnList = this.props.readingList.includes(foundBook)
 
-    if(!isOnList) {
-      this.setState( { toReadList: [...this.state.toReadList, foundBook] } )
+    if (!isOnList) {
+      addFavorite(foundBook) 
       this.changeButtonStyling(id)
     } else {
-      const newList = this.state.toReadList.filter(book => book !== foundBook)
-      this.setState( { toReadList: newList } )
       this.changeButtonStyling(id)
     }
   }
 
   displayBooks() {
-    return this.props.books.map(book => { 
-      return <Book book={book} addBook={this.handleClick}/>
+    return this.props.books.map(book => {
+      return <Book book={book} addBook={this.handleClick} />
     })
   }
 
   searchBooks = (search) => {
     let findBooks = this.props.books.filter(book => {
       if (book.title.includes(search) || book.author.includes(search)) {
-        this.setState({foundBooks: [book]})
+        this.setState({ foundBooks: [book] })
       }
     })
     console.log(this.state.foundBooks)
@@ -74,10 +72,13 @@ class Books extends Component {
   }
 
   render() {
-    const { books } = this.props
+    const { books, readingList } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
+      <Route exact path='/favorites' render={() =>
+          <ReadingList toReadList={readingList} />
+        } />
         <Route exact path='/'render= {() => {
         return (
           <section>
@@ -94,11 +95,11 @@ class Books extends Component {
                 : <h1>Search For Book by Title or Author</h1>
             }
             </section>
-              <div className="books-container">{this.state.books && bookCards}</div>
+              <div className="books-container">{books && bookCards}</div>
             </section>
           )
         }} />
-        <Route path='/:bookId' render={({ match }) => {
+        <Route exact path='/:bookId' render={({ match }) => {
           const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
           return <BookInfo book={bookClicked} />
         }} />
@@ -107,13 +108,15 @@ class Books extends Component {
   }
 }
 
-export const mapStateToProps = ({ books }) => ({
+export const mapStateToProps = ({ books, readingList }) => ({
   books,
+  readingList
 })
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    setBooks
+    setBooks,
+    addFavorite
   }, dispatch)
 )
 

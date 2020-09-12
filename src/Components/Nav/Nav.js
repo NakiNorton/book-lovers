@@ -10,7 +10,7 @@ const Nav = () => {
       <label className='app-logo'>Book Lovers</label>
       <ul>
         <li><NavLink to='/' className='nav-link active' aria-label='navigate to home page'>HOME</NavLink></li>
-        <li><NavLink to='/' className='nav-link active' aria-label='navigate to reading list'>READING LIST</NavLink></li>
+        <li><NavLink to='/favorites' className='nav-link active' aria-label='navigate to reading list'>READING LIST</NavLink></li>
       </ul>
     </nav>
   )
