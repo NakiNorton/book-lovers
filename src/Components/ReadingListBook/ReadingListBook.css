@@ -17,14 +17,16 @@ box-shadow: 2px 2px 15px  whitesmoke;
   margin-top: 1.2em;
   padding: 0.6em;
   font-size: 16px;
-  color: white;
+  color:  #C09081;
   font-weight: bold;
   background-color: transparent;
-  border: solid 1px white;
-  box-shadow: 2px 2px 15px  whitesmoke;
+  border: solid 1px  #C09081;
+  box-shadow: 2px 2px 15px  #C09081;
 }
 
 .remove-book:hover {
   background-color: teal;
   color: white;
+  border: solid 1px  white;
+  box-shadow: 2px 2px 15px  whitesmoke;
 }

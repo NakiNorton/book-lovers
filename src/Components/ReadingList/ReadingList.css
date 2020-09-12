@@ -1,6 +1,7 @@
 
 .ReadingList {
-  background-color: #C09081;
+  background-color: seashell;
+  /* background-color: #C09081; */
   margin: 0;
 }
 
@@ -8,7 +9,7 @@
   margin: 0;
   padding-top: 0.5em;
   font-family: 'Amatic SC', cursive;
-  color: white;
+  color: #C09081;
   font-size: 10em;
 }
 
@@ -24,7 +25,7 @@
 }
 
 .no-books-msg {
-  color: white;
+  color: #C09081;
 }
 
 .ani-container{
