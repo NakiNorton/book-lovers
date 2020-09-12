@@ -1,7 +1,6 @@
 export const readingList = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TO_READING_LIST':
-      console.log(action.readingList)
       return ( [...state, action.book] )
     case 'REMOVE_FROM_READING_LIST':
       const newReadingList = state.filter(book => {
