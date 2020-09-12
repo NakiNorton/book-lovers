@@ -3,13 +3,39 @@ import './App.css';
 import Books from '../Books/Books'
 import Nav from '../Nav/Nav'
 
-function App () {
-  return (
-    <div className="App">
-      <Nav />
-      <Books />
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      lists: {
+        'hardcover-fiction': true
+      }
+    }
+  }
+
+  createBookLists = () => {
+    const lists = this.state.lists;
+    const listsKeys = Object.keys(lists);
+    const allBooks = listsKeys.map(list => {
+      if(lists[list]) {
+        return (
+          <Books key={list} id={list} list={list} />
+        )
+      }
+    })
+    return allBooks
+  }
+
+  render() {
+    const allBooks = this.createBookLists()
+    console.log(allBooks)
+    return (
+      <div className="App">
+        <Nav />
+        {allBooks}
+      </div>
+    );
+  }
 }
 
 export default App;
