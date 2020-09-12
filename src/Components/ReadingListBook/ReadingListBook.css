@@ -1,0 +1,30 @@
+.card-image {
+  border: solid 3px whitesmoke;
+  width: 90%;
+  height: 40em;
+  /* box-shadow: 2px 2px 15px  whitesmoke; */
+}
+
+.card-image:hover {
+transform: scale(1.05);
+box-shadow: 2px 2px 15px  whitesmoke;
+}
+
+.book-card {
+  padding: 2em;
+}
+.remove-book {
+  margin-top: 1.2em;
+  padding: 0.6em;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  background-color: transparent;
+  border: solid 1px white;
+  box-shadow: 2px 2px 15px  whitesmoke;
+}
+
+.remove-book:hover {
+  background-color: teal;
+  color: white;
+}
