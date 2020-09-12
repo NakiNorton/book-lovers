@@ -15,13 +15,11 @@ class Books extends Component {
     super()
     this.state = {
       foundBooks: [],
-      toReadList: [],
     }
   }
 
   async componentDidMount() {
     const { setBooks } = this.props;
-    console.log(this.props)
     try {
       const books = await fetchAllBooks()
       setBooks(books.results.books)
@@ -44,16 +42,15 @@ class Books extends Component {
   }
 
   handleClick = (event) => {
+    const { addFavorite } = this.props;
     const id = event.target.id;
     const foundBook = this.props.books.find(book => book.primary_isbn10 === id);
-    const isOnList = this.state.toReadList.includes(foundBook)
+    const isOnList = this.props.readingList.includes(foundBook)
 
     if (!isOnList) {
-      this.setState({ toReadList: [...this.state.toReadList, foundBook] })
+      addFavorite(foundBook) 
       this.changeButtonStyling(id)
     } else {
-      const newList = this.state.toReadList.filter(book => book !== foundBook)
-      this.setState({ toReadList: newList })
       this.changeButtonStyling(id)
     }
   }
@@ -83,12 +80,12 @@ class Books extends Component {
   //     </section>
 
   render() {
-    const { books } = this.props
+    const { books, readingList } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
         <Route exact path='/favorites' render={() =>
-          <ReadingList toReadList={this.state.toReadList} />
+          <ReadingList toReadList={readingList} />
         } />
         <Route exact path='/' render={() => {
           return (
