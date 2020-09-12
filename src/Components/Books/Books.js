@@ -67,23 +67,26 @@ class Books extends Component {
     return findBooks;
   }
 
-  // <section className="found-book-cards" alt="found-book-cards">
-  //       {this.state.foundBooks.length > 0 ?
-  //         this.state.foundBooks.map(foundBook => {
-  //           return <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={book.book_image} />
-  //           }) : <h1>Search For Book by Title or Author</h1>
-  //        }
-  //     </section>
-
   render() {
     let bookCards = this.displayBooks()
     return (
       <Switch>
         <Route exact path='/'render= {() => {
-            return (
-            <section>
-              <h1>Books!</h1>
-              <Search searchBooks={this.searchBooks}/>
+        return (
+          <section>
+            <h1>Books!</h1>
+        <Search searchBooks={this.searchBooks}/>
+          <section className="found-book-cards" alt="found-book-cards">
+            {this.state.foundBooks.length > 0 ? this.state.foundBooks.map(foundBook => {
+              return (
+                <>
+                <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={foundBook.book_image} /> 
+                </>
+              )
+            }) 
+                : <h1>Search For Book by Title or Author</h1>
+            }
+            </section>
               <div className="books-container">{this.state.books && bookCards}</div>
             </section>
             )
