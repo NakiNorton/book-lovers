@@ -5,14 +5,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 const ReadingListBook = ({ title, image, id, removeFavorite }) => {
-  const handleRemoveClick = (event) => {
-    removeFavorite(event.target.id)
-  }
 
   return (
     <article className='book-card'>
       <img className="card-image" alt={title} src={image} />
-      <button className='remove-book' id={id} onClick={(event) => handleRemoveClick(event)}>Remove</button>
+      <button className='remove-book' onClick={() => removeFavorite(id)}>Remove</button>
     </article>
   )
 }
