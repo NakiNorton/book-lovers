@@ -91,7 +91,10 @@ class Books extends Component {
             <section>
               <h1>Books!</h1>
               <Search searchBooks={this.searchBooks}/>
-              <div className="books-container">{books && bookCards}</div>
+              <div className="books-list">
+                <h3 className="books-list-name">**Insert List Name**</h3>
+                <div className="books-container">{books && bookCards}</div>
+              </div>
             </section>
           )
         }} />

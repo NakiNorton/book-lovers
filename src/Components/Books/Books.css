@@ -1,10 +1,23 @@
+.books-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
 .books-container {
   display: flex;
   flex-direction: row;
   overflow: scroll;
+  border-top: 2px solid teal;
+  border-bottom: 2px solid teal;
+  margin: 2%;
+  margin-top: 0.5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
-.Book-card-image {
-  height: 15em;
-  width: auto;
+.books-list-name {
+  margin: 0;
+  margin-left: 2%;
 }
