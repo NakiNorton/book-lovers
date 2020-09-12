@@ -11,17 +11,17 @@ import { setBooks, addFavorite } from '../../actions';
 import { bindActionCreators } from 'redux';
 
 class Books extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       foundBooks: [],
     }
   }
 
   async componentDidMount() {
-    const { setBooks } = this.props;
+    const { setBooks, list } = this.props;
     try {
-      const books = await fetchBooks('hardcover-fiction')
+      const books = await fetchBooks(list)
       setBooks(books.results.books)
     }
     catch ({ message }) {
@@ -97,7 +97,7 @@ class Books extends Component {
                 }
               </section>
               <div className="books-list">
-                <h3 className="books-list-name">**Insert List Name**</h3>
+                <h3 className="books-list-name">{this.props.id}</h3>
                 <div className="books-container">{books && bookCards}</div>
               </div>
             </section>
