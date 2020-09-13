@@ -62,13 +62,12 @@ class Books extends Component {
   }
 
   searchBooks = (search) => {
-    let findBooks = this.props.books.filter(book => {
-      if (book.title.includes(search) || book.author.includes(search)) {
-        this.setState({ foundBooks: [book] })
+    let findBook = this.props.books.filter(book => {
+      if (book.title.includes(search.toUpperCase()) || book.author.includes(search)) {
+        this.setState({ foundBooks: [book] });
       }
     })
-    console.log(this.state.foundBooks)
-    return findBooks;
+    return findBook
   }
 
   render() {
