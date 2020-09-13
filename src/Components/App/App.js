@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       lists: {
         'hardcover-fiction': true,
-        'celebrities': true
+        'celebrities': true,
+        'food-and-fitness': true
       }
     }
   }
