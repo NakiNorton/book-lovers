@@ -80,22 +80,24 @@ class Books extends Component {
           <ReadingList toReadList={readingList} />
         } />
         <Route exact path='/'render= {() => {
-        return (
-          <section>
-            <h1>Books!</h1>
-        <Search searchBooks={this.searchBooks}/>
-          <section className="found-book-cards" alt="found-book-cards">
-            {this.state.foundBooks.length > 0 ? this.state.foundBooks.map(foundBook => {
-              return (
-                <>
-                <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={foundBook.book_image} /> 
-                </>
-              )
-            }) 
-                : <h1>Search For Book by Title or Author</h1>
-            }
-            </section>
-              <div className="books-container">{books && bookCards}</div>
+          return (
+            <section>
+              <h1>Books!</h1>
+              <Search searchBooks={this.searchBooks}/>
+              <section className="found-book-cards" alt="found-book-cards">
+                { this.state.foundBooks ? 
+                  this.state.foundBooks.map(foundBook => {
+                    return (
+                        <Book book={foundBook} addBook={this.handleClick}/> 
+                    )
+                  }) : 
+                  <h1>Search For Book by Title or Author</h1>
+                }
+              </section>
+              <div className="books-list">
+                <h3 className="books-list-name">**Insert List Name**</h3>
+                <div className="books-container">{books && bookCards}</div>
+              </div>
             </section>
           )
         }} />
