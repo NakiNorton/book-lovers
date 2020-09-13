@@ -7,7 +7,7 @@ import Search from '../Search/Search'
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { setBooks, addFavorite } from '../../actions';
+import { setBooks, addFavorite, setList } from '../../actions';
 import { bindActionCreators } from 'redux';
 
 class Books extends Component {
@@ -19,10 +19,11 @@ class Books extends Component {
   }
 
   async componentDidMount() {
-    const { setBooks, list } = this.props;
+    const { setBooks, setList, list } = this.props;
     try {
       const books = await fetchBooks(list)
-      setBooks(books.results.books)
+      await setBooks(books.results.books)
+      await setList(list, books.results.books.map(book => book.primary_isbn10))
     }
     catch ({ message }) {
       alert(message);
@@ -57,7 +58,14 @@ class Books extends Component {
 
   displayBooks() {
     return this.props.books.map(book => {
+      const listName = this.props.list
+      const listIds = this.props.lists[listName]
+      console.log(listIds)
       return <Book book={book} addBook={this.handleClick} />
+
+      // if(this.props.lists[this.props.list].includes(book.primary_isbn10)) {
+      //   return <Book book={book} addBook={this.handleClick} />
+      // }
     })
   }
 
@@ -82,7 +90,7 @@ class Books extends Component {
         <Route exact path='/'render= {() => {
           return (
             <section>
-              <h1>Books!</h1>
+              {/* <h1>Books!</h1>
               <Search searchBooks={this.searchBooks}/>
               <section className="found-book-cards" alt="found-book-cards">
                 { this.state.foundBooks ? 
@@ -95,7 +103,7 @@ class Books extends Component {
                   }) : 
                   <h1>Search For Book by Title or Author</h1>
                 }
-              </section>
+              </section> */}
               <div className="books-list">
                 <h3 className="books-list-name">{this.props.id}</h3>
                 <div className="books-container">{books && bookCards}</div>
@@ -112,15 +120,17 @@ class Books extends Component {
   }
 }
 
-export const mapStateToProps = ({ books, readingList }) => ({
+export const mapStateToProps = ({ books, readingList, lists }) => ({
   books,
-  readingList
+  readingList,
+  lists
 })
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setBooks,
-    addFavorite
+    addFavorite,
+    setList
   }, dispatch)
 )
 
