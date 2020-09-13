@@ -5,6 +5,8 @@ import ReadingListBook from '../ReadingListBook/ReadingListBook'
 import { MemoryRouter } from 'react-router-dom';
 import { removeFavorite } from '../../actions'
 import { Provider } from 'react-redux';
+
+
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -24,7 +26,6 @@ describe('ReadingListBook component', () => {
           'amazon_product_url': 'https://www.amazon.com/Where-Crawdads-Sing-Delia-Owens/dp/0735219095?tag=NYTBS-20',
         }
       ]
-      
     })
 
     store.dispatch = jest.fn();
@@ -52,15 +53,14 @@ describe('ReadingListBook component', () => {
     expect(removeButton).toBeInTheDocument();
   })
 
-  it('should invoke a redux action to remove book when button is clicked', () => {
-
+  it('should invoke action to remove book from store when button is clicked', () => {
+    const id = "015489213"
     const removeButton = screen.getByRole('button', { name: 'Remove' })
     fireEvent.click(removeButton)
 
     expect(store.dispatch).toHaveBeenCalledTimes(1);
-    // expect(store.dispatch).toHaveBeenCalledWith(
-    //   removeFavorite( { payload: "015489213" })
-    //   );
+    expect(store.dispatch).toHaveBeenCalledWith(
+      removeFavorite(id));
   })
 })
   
