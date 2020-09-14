@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 const ReadingListBook = ({ title, image, id, removeFavorite }) => {
 
   return (
-    <article className='book-card'>
+    <article className='reading-list-book-card'>
       <img className="card-image" alt={title} src={image} />
       <button className='remove-book' onClick={() => removeFavorite(id)}>Remove</button>
     </article>
