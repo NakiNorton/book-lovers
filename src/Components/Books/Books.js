@@ -82,7 +82,7 @@ class Books extends Component {
         <Route exact path='/'render= {() => {
           return (
             <section>
-              <h1>Books!</h1>
+              <h1 className="browse-books">Browse Books</h1>
               <Search searchBooks={this.searchBooks}/>
               <section className="found-book-cards" alt="found-book-cards">
                 { this.state.foundBooks ? 
