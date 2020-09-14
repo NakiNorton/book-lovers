@@ -71,12 +71,12 @@ class Books extends Component {
   }
 
   render() {
-    const { books, readingList } = this.props
+    const { books } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
         <Route exact path='/favorites' render={() =>
-          <ReadingList toReadList={readingList} /> } 
+          <ReadingList /> } 
         />
         <Route exact path='/'render= {() => {
           return (
