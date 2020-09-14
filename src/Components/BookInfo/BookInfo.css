@@ -5,17 +5,22 @@
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
 }
 
 .text-box {
   background-color: white;
   border: 1px solid turquoise;
   margin: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .book-image {
   grid-area: 1 / 1 / 4 / 2;
-  margin: 20px;
+  justify-self: end;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .title-and-author {
@@ -40,21 +45,24 @@
 }
 
 .add-to-reading-list, .purchase {
-  background-color: whitesmoke;
-  border-radius: 5px;
-  color: teal;
+  padding: 0.5em;
+  font-size: 26px;
+  color:  #C09081;
   font-family: 'Amatic SC', cursive;
-  font-size: 24px;
-  font-weight: 500;
-  height: 50px;
+  font-weight: bold;
+  background-color: transparent;
+  border: solid 1px  #C09081;
+  border-radius: 0.3em;
+  box-shadow: 2px 2px 15px  #C09081;
   margin: 20px;
-  text-decoration: none;
   width: 100px;
 }
 
 .add-to-reading-list:hover, .purchase:hover {
-  background:  #F4DBD8;
-  transition: 0.5s;
+  background-color: teal;
+  color: white;
+  border: solid 1px  white;
+  box-shadow: 2px 2px 15px  whitesmoke;
 }
 
 @media only screen and (max-width: 800px) {
@@ -63,7 +71,7 @@
     display: grid;
     grid-template-rows: 1fr 3fr 1fr 1fr;
     grid-template-columns: 1fr;
-    min-width: 300px;
+    /* min-width: 300px; */
   }
 
   .book-image {
@@ -81,6 +89,10 @@
 
   .button-container {
     grid-area: 4 / 1 / 5 / 2;
+  }
+  .text-box {
+    justify-self: center;
+    width: 300px;
   }
 
 }
