@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import './App.css';
 import Books from '../Books/Books'
 import Nav from '../Nav/Nav'
+import Search from '../Search/Search'
+import BookInfo from '../BookInfo/BookInfo'
+import ReadingList from '../ReadingList/ReadingList'
 import { fetchBooks } from '../../API';
 import { connect } from 'react-redux'
 import { setBooks, setList } from '../../actions';
 import { bindActionCreators } from 'redux';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -60,18 +64,57 @@ class App extends Component {
     return listBooks
   }
 
+  searchBooks = (search) => {
+    let findBooks = this.props.books.filter(book => {
+      if (book.title.includes(search) || book.author.includes(search)) {
+        this.setState({ foundBooks: [book] })
+      }
+    })
+    console.log(this.state.foundBooks)
+    return findBooks;
+  }
+
   render() {
+    const { readingList, books } = this.props
     return (
       <div className="App">
-        <Nav />
-        {this.createBookLists()}
+          <Nav />
+          <Route exact path={'/'} render={() => {
+            return (<>
+              <h1>Books!</h1>
+              <Search searchBooks={this.searchBooks}/>
+              <section className="found-book-cards" alt="found-book-cards">
+                { this.state.foundBooks ? 
+                  this.state.foundBooks.map(foundBook => {
+                    return (
+                      <>
+                        <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={foundBook.book_image} /> 
+                      </>
+                    )
+                  }) : 
+                  <h1>Search For Book by Title or Author</h1>
+                }
+              </section>
+              {this.createBookLists()}
+            </>)
+          }}
+          />
+          <Route exact path='/:bookId' render={({ match }) => {
+            const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
+            return <BookInfo book={bookClicked} /> }}
+          />
+          <Route exact path='/favorites' render={() =>  {
+            return <ReadingList readingList={readingList} /> 
+          }
+          } />
       </div>
     );
   }
 }
 
-export const mapStateToProps = ({ books, lists }) => ({
+export const mapStateToProps = ({ books, readingList, lists }) => ({
   books,
+  readingList,
   lists
 })
 
