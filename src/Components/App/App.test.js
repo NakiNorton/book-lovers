@@ -4,7 +4,7 @@ import App from './App';
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { fetchAllBooks } from '../../API'
+import { fetchBooks } from '../../API'
 import { Provider } from 'react-redux';
 // import thunk from 'redux-thunk';
 // // const middlewares = [thunk];
@@ -41,7 +41,7 @@ describe('App Component', () => {
       }
     ]
 
-    fetchAllBooks.mockResolvedValue(fetchedBooks);
+    fetchBooks.mockResolvedValue(fetchedBooks);
 
     const store = mockStore({
       books: fetchedBooks
