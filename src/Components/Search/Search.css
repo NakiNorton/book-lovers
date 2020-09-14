@@ -1,0 +1,29 @@
+.search-input {
+  width: 25%;
+  margin: .50vh;
+  padding: .6vh;
+  font-size: 1em;
+  border-radius: 6px;
+  font-weight: 300;
+  align-self: center;
+  border: 1px solid black;
+
+}
+
+.search-input:hover,
+.search-input:focus {
+  background-color: rgb(237, 173, 255);
+  color: black;
+}
+
+.search-button {
+  align-self: center;
+  width: 7.8%;
+  margin: .5vh;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 6px;
+  background-color: white;
+  color: black;
+  font-size: 9.3px;
+}

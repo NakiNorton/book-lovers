@@ -21,12 +21,12 @@ class Search extends Component {
 
   render() {
     return (
-      <section>
-      <input id="search-input" aria-label="search" className="search-input" type="search" placeholder="search" name="search"
+      <section className='search-container'>
+      <input id='search-books-input' aria-label='search' className='search-input' type='search' placeholder='search for title or author' name='search'
         onChange={this.changeHandler}
         value={this.state.search}
       />
-      <button className="search-button" onClick={this.searchBookInput}>Search</button>
+      <button className='search-button' onClick={this.searchBookInput}>Search</button>
       </section>
     )
   }

@@ -62,22 +62,21 @@ class Books extends Component {
   }
 
   searchBooks = (search) => {
-    let findBooks = this.props.books.filter(book => {
-      if (book.title.includes(search) || book.author.includes(search)) {
-        this.setState({ foundBooks: [book] })
+    let findBook = this.props.books.filter(book => {
+      if (book.title.includes(search.toUpperCase()) || book.author.includes(search)) {
+        this.setState({ foundBooks: [book] });
       }
     })
-    console.log(this.state.foundBooks)
-    return findBooks;
+    return findBook
   }
 
   render() {
-    const { books, readingList } = this.props
+    const { books } = this.props
     let bookCards = this.displayBooks()
     return (
       <Switch>
         <Route exact path='/favorites' render={() =>
-          <ReadingList toReadList={readingList} /> } 
+          <ReadingList /> } 
         />
         <Route exact path='/'render= {() => {
           return (
@@ -88,9 +87,7 @@ class Books extends Component {
                 { this.state.foundBooks ? 
                   this.state.foundBooks.map(foundBook => {
                     return (
-                      <>
-                        <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={foundBook.book_image} /> 
-                      </>
+                        <Book book={foundBook} addBook={this.handleClick}/> 
                     )
                   }) : 
                   <h1>Search For Book by Title or Author</h1>
