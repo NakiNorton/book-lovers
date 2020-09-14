@@ -14,20 +14,25 @@ class Books extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      books: [],
       foundBooks: [],
     }
   }
 
-  async componentDidMount() {
-    const { setBooks, setList, list } = this.props;
-    try {
-      const books = await fetchBooks(list)
-      await setBooks(books.results.books)
-      await setList(list, books.results.books.map(book => book.primary_isbn10))
+  componentDidMount() {
+    this.setState({ books: this.props.filteredBooks })
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.filteredBooks !== prevProps.filteredBooks) {
+      this.setState({ books: this.props.filteredBooks })
     }
-    catch ({ message }) {
-      alert(message);
-    }
+  }
+
+  displayBooks() {
+    return this.state.books.map(book => {
+      return <Book book={book} addBook={this.handleClick}/>
+    })
   }
 
   changeButtonStyling(id) {
@@ -56,19 +61,6 @@ class Books extends Component {
     }
   }
 
-  displayBooks() {
-    return this.props.books.map(book => {
-      const listName = this.props.list
-      const listIds = this.props.lists[listName]
-      console.log(listIds)
-      return <Book book={book} addBook={this.handleClick} />
-
-      // if(this.props.lists[this.props.list].includes(book.primary_isbn10)) {
-      //   return <Book book={book} addBook={this.handleClick} />
-      // }
-    })
-  }
-
   searchBooks = (search) => {
     let findBooks = this.props.books.filter(book => {
       if (book.title.includes(search) || book.author.includes(search)) {
@@ -82,6 +74,7 @@ class Books extends Component {
   render() {
     const { books, readingList } = this.props
     let bookCards = this.displayBooks()
+    console.log(bookCards)
     return (
       <Switch>
         <Route exact path='/favorites' render={() =>
