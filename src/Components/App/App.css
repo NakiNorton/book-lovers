@@ -1,6 +1,7 @@
 .App {
   background-color: seashell;
   text-align: center;
+  min-width: 401px;
 }
 
 .App-logo {
