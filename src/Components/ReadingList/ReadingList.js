@@ -32,7 +32,7 @@ const ReadingList = ({ readingList }) => {
           </div>
         </div> 
         </section>
-        }
+      }
       <section className="reading-list-section">
         {booksToRead}
       </section>

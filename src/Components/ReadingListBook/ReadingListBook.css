@@ -1,17 +1,19 @@
+.reading-list-book-card {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
 .card-image {
   border: solid 3px whitesmoke;
-  width: 90%;
-  height: 40em;
   margin-bottom: 1em;
+  width: 160px;
+  height: 240px;
 }
 
 .card-image:hover {
   transform: scale(1.1);
   box-shadow: 15px 0px 15px 0px #C09081;
-}
-
-.book-card {
-  padding: 2em;
 }
 
 .remove-book {

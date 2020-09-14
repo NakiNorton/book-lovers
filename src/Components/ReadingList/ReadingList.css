@@ -6,11 +6,10 @@
 }
 
 .page-title {
-  margin: 0;
-  padding-top: 0.5em;
   font-family: 'Amatic SC', cursive;
   color: #C09081;
-  font-size: 10em;
+  font-size: 46px;
+  line-height: 0; /* I don't think this is the best way but it works -nl */
 }
 
 .reading-list-section {
@@ -21,7 +20,8 @@
   font-size: 14px;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
-  margin-top: 5em;
+  margin: auto;
+  max-width: 1000px;
 }
 
 .no-books-msg {
@@ -152,4 +152,21 @@
 .eyebrow{
   animation: eyebrow 7s infinite;
   animation-delay:2s;
+}
+
+@media only screen and (max-width: 1000px) {
+  .reading-list-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .reading-list-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .reading-list-section {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
