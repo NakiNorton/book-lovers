@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import './Books.css'
 import { fetchBooks } from '../../API'
 import Book from '../Book/Book'
-import ReadingList from '../ReadingList/ReadingList'
-import Search from '../Search/Search'
+
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
@@ -48,10 +47,10 @@ class Books extends Component {
   }
 
   handleClick = (event) => {
-    const { addFavorite } = this.props;
+    const { addFavorite, readingList, books } = this.props;
     const id = event.target.id;
-    const foundBook = this.props.books.find(book => book.primary_isbn10 === id);
-    const isOnList = this.props.readingList.includes(foundBook)
+    const foundBook = books.find(book => book.primary_isbn10 === id);
+    const isOnList = readingList.includes(foundBook)
 
     if (!isOnList) {
       addFavorite(foundBook) 
@@ -61,62 +60,25 @@ class Books extends Component {
     }
   }
 
-  searchBooks = (search) => {
-    let findBooks = this.props.books.filter(book => {
-      if (book.title.includes(search) || book.author.includes(search)) {
-        this.setState({ foundBooks: [book] })
-      }
-    })
-    console.log(this.state.foundBooks)
-    return findBooks;
-  }
-
   render() {
-    const { books, readingList } = this.props
+    const { books } = this.props
     let bookCards = this.displayBooks()
     console.log(bookCards)
     return (
-      <Switch>
-        <Route exact path='/favorites' render={() =>
-          <ReadingList toReadList={readingList} /> } 
-        />
-        <Route exact path='/'render= {() => {
-          return (
-            <section>
-              {/* <h1>Books!</h1>
-              <Search searchBooks={this.searchBooks}/>
-              <section className="found-book-cards" alt="found-book-cards">
-                { this.state.foundBooks ? 
-                  this.state.foundBooks.map(foundBook => {
-                    return (
-                      <>
-                        <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={foundBook.book_image} /> 
-                      </>
-                    )
-                  }) : 
-                  <h1>Search For Book by Title or Author</h1>
-                }
-              </section> */}
-              <div className="books-list">
-                <h3 className="books-list-name">{this.props.id}</h3>
-                <div className="books-container">{books && bookCards}</div>
-              </div>
-            </section>
-          )
-        }} />
-        <Route exact path='/:bookId' render={({ match }) => {
-          const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
-          return <BookInfo book={bookClicked} />
-        }} />
-      </Switch>
+      <section>
+        <div className="books-list">
+          <h3 className="books-list-name">{this.props.id}</h3>
+          <div className="books-container">{books && bookCards}</div>
+        </div>
+      </section>
     )
   }
 }
 
-export const mapStateToProps = ({ books, readingList, lists }) => ({
+export const mapStateToProps = ({ books, lists, readingList }) => ({
   books,
-  readingList,
-  lists
+  lists,
+  readingList
 })
 
 export const mapDispatchToProps = dispatch => (
