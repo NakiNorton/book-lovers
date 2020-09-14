@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
 
+.book-details {
+  font-family: 'Amatic SC', cursive;
+  color: #C09081;
+  font-size: 46px;
+  line-height: 12px;
+}
+
 .book-info {
   background-color: seashell;
   display: grid;
