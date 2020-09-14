@@ -75,9 +75,9 @@ class Books extends Component {
     let bookCards = this.displayBooks()
     return (
       <Switch>
-      <Route exact path='/favorites' render={() =>
-          <ReadingList toReadList={readingList} />
-        } />
+        <Route exact path='/favorites' render={() =>
+          <ReadingList toReadList={readingList} /> } 
+        />
         <Route exact path='/'render= {() => {
           return (
             <section>
