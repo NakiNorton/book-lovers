@@ -4,11 +4,11 @@ import { screen, render, waitFor, fireEvent } from '@testing-library/react'
 import Search from './Search.js'
 jest.mock('../../API');
 
-describe('Search Componey', () => {
+describe('Search Component', () => {
   it('should render a search bar and button', () => {
     render(<Search />);
 
-    const searchInput = screen.getByPlaceholderText('search')
+    const searchInput = screen.getByPlaceholderText('search for title or author')
     const submitButton = screen.getByRole('button', {name: 'Search'})
 
     expect(searchInput).toBeInTheDocument()
@@ -19,7 +19,7 @@ describe('Search Componey', () => {
     const searchBooks = jest.fn();
     render(<Search searchBooks={searchBooks} />)
 
-    const searchInput = screen.getByPlaceholderText('search')
+    const searchInput = screen.getByPlaceholderText('search for title or author')
     const submitButton = screen.getByRole('button', {name: 'Search'})
 
     expect(searchInput).toBeInTheDocument()

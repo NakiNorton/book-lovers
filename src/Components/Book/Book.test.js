@@ -27,14 +27,14 @@ describe('Book Component', () => {
     )
 
     const bookRank = screen.getByText("1", { exact: false })
-    // const bookIsbn = screen.getByText("href=/1250145236", {exact: false})
+    const bookIsbn = screen.getByRole("link", "href=/1250145236")
     const bookTitle = screen.getByText("ALL THE DEVILS ARE HERE")
     const bookImg = screen.getByAltText("ALL THE DEVILS ARE HERE", { exact: false })
-    const bookAuthor = screen.getByText("Louise Penny")
-    const addBookButton = screen.getByRole("button", {name: "Reading List"})
+    const bookAuthor = screen.getByText("Louise Penny", { exact: false })
+    const addBookButton = screen.getByRole("button", {name: "Read"})
 
     expect(bookRank).toBeInTheDocument();
-    // expect(bookIsbn).toBeInTheDocument();
+    expect(bookIsbn).toBeInTheDocument();
     expect(bookTitle).toBeInTheDocument();
     expect(bookImg).toBeInTheDocument();
     expect(bookAuthor).toBeInTheDocument();
@@ -42,6 +42,7 @@ describe('Book Component', () => {
   })
 
   it('Reading List button should be able to fire', () => {
+    const mockAddBook = jest.fn()
     const book1 = {
       rank: 1 ,
       primary_isbn10: "1250145236",
@@ -54,12 +55,14 @@ describe('Book Component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Book book={book1}/>
+          <Book book={book1} addBook={mockAddBook}/>
         </MemoryRouter>
       </Provider>
     )
     
-    const addBookButton = screen.getByRole("button", {name: "Reading List"})
+    const addBookButton = screen.getByRole("button", {name: "Read"})
     fireEvent.click(addBookButton)
+
+    expect(mockAddBook).toHaveBeenCalledTimes(1)
   })
 })
