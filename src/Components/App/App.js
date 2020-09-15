@@ -15,7 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      lists: {
+      listPaths: {
         'celebrities': true,
         'food-and-fitness': true,
         'hardcover-fiction': true,
@@ -27,7 +27,7 @@ class App extends Component {
 
   componentDidMount() {
     const { setBooks, setList } = this.props
-    const allListUrls = Object.keys(this.state.lists)
+    const allListUrls = Object.keys(this.state.listPaths)
     try {
       allListUrls.map(async url => {
         const response = await fetchBooks(url);
@@ -52,11 +52,9 @@ class App extends Component {
     const listsKeys = Object.keys(listUrls);
     const listBooks = listsKeys.map(listName => {
       const filteredBooks = this.filterBooks(listName)
-      if(filteredBooks.length > 0) {
-        return (
-          <Books key={listName} id={listName} listName={listName} filteredBooks={filteredBooks} addBook={this.handleClick} />
-        )
-      }
+      return (
+        <Books key={listName} id={listName} listName={listName} filteredBooks={filteredBooks} addBook={this.handleClick}/>
+      )
     })
     return listBooks
   }
