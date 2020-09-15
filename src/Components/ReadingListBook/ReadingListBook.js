@@ -3,6 +3,7 @@ import './ReadingListBook.css'
 import { removeFavorite } from '../../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types'
 
 const ReadingListBook = ({ title, image, id, removeFavorite }) => {
 
@@ -12,6 +13,13 @@ const ReadingListBook = ({ title, image, id, removeFavorite }) => {
       <button className='remove-book' onClick={() => removeFavorite(id)}>Remove</button>
     </article>
   )
+}
+
+ReadingListBook.propTypes = {
+  title: PropTypes.string,
+  image: PropTypes.string,
+  id: PropTypes.string,
+  removeFavorite: PropTypes.func
 }
 
 export const mapDispatchToProps = dispatch => (

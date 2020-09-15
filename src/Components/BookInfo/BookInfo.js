@@ -1,6 +1,6 @@
 import React from 'react'
 import './BookInfo.css'
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 const BookInfo = ({ book }) => {
   return (
@@ -22,6 +22,10 @@ const BookInfo = ({ book }) => {
       </section>
     </>
   )
+}
+
+BookInfo.propTypes = {
+  book: PropTypes.object
 }
 
 export default BookInfo

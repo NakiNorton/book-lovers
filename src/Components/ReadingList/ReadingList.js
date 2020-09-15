@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import ReadingListBook from '../ReadingListBook/ReadingListBook'
 import './ReadingList.css'
+import PropTypes from 'prop-types'
 
 const ReadingList = ({ readingList }) => {
 
@@ -38,6 +39,10 @@ const ReadingList = ({ readingList }) => {
       </section>
     </section>
   )
+}
+
+ReadingList.propTypes = {
+  readingList: PropTypes.array
 }
 
 export const mapStateToProps = ({ readingList }) => ({

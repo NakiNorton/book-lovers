@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Book.css'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 const Book = ({ book, addBook }) => {
@@ -18,6 +19,11 @@ const Book = ({ book, addBook }) => {
         <h4 className="card-text">by {book.author}</h4>
     </section>
   )
+}
+
+Book.propTypes = {
+  book: PropTypes.object,
+  addBook: PropTypes.func
 }
 
 export default Book
