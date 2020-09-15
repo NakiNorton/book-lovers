@@ -1,9 +1,9 @@
 const initState = {
     'celebrities': [],
     'food-and-fitness': [],
-    // 'hardcover-fiction': [],
-    // 'health': [],
-    // 'games-and-activities': [],
+    'hardcover-fiction': [],
+    'health': [],
+    'games-and-activities': [],
 }
 
 export const lists = (state = initState, action) => {

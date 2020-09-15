@@ -63,7 +63,6 @@ class Books extends Component {
   render() {
     const { books } = this.props
     let bookCards = this.displayBooks()
-    console.log(bookCards)
     return (
       <section>
         <div className="books-list">
