@@ -1,13 +1,11 @@
 import React from 'react';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import Books from './Books.js'
 import { screen, render, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { createStore } from 'redux';
-import { rootReducer } from '../../reducers/index';
 import { Provider } from 'react-redux'
 jest.mock('../../API');
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -27,18 +25,45 @@ describe('Books Component', () => {
     ]
   })
 
-  it('Should render book cards', async () => {
-    // const store = createStore(rootReducer);
+  it('Should render the book list containers', () => {
     const store = mockStore({
       books: fetchedBooks
-    }
-
-    );
+    });
 
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Books />
+          <Books
+            key={'hardcover fiction'}
+            id={'hardcover fiction'}
+            listName={'hardcover fiction'}
+            filteredBooks={fetchedBooks}
+            addBook={jest.fn()} />
+        </MemoryRouter>
+      </Provider>
+    )
+
+    const listName = screen.getByText('hardcover fiction')
+    expect(listName).toBeInTheDocument();
+  })
+  
+  
+  
+  
+  it('Should render book cards', async () => {
+    const store = mockStore({
+      books: fetchedBooks
+    });
+
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Books 
+            key={'hardcover-fiction'} 
+            id={'hardcover-fiction'} 
+            listName={'hardcover-fiction'} 
+            filteredBooks={fetchedBooks} 
+            addBook={jest.fn()}/>
         </MemoryRouter>
       </Provider>
     )
