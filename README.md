@@ -12,3 +12,9 @@ Read Me is a web application we built that connects users to various New York Ti
 - Test driven development with:
     - React Testing Library
     - Jest
+
+## Contributors:
+Amy Karanze: [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/)
+Nicole Latifi: [GitHub](https://github.com/NicoleLatifi) | [LinkedIn](https://www.linkedin.com/in/nicole-latifi/)
+Stephanie Norton: [GitHub](https://github.com/NakiNorton) | [LinkedIn](https://www.linkedin.com/in/stephanie-norton-12888453/)
+Jake West: [GitHub](https://github.com/jkwest-93) | [LinkedIn](https://www.linkedin.com/in/jake-west-3840b71b4/)
