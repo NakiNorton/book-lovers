@@ -16,7 +16,7 @@ const Book = ({ book, addBook }) => {
           <img className="Book-card-image" alt={book.title} src={book.book_image} />
         </Link>
         <h1 className="card-text title-text">{book.title}</h1>
-        <h4 className="card-text">by {book.author}</h4>
+        <h4 className="card-text author-text">by {book.author}</h4>
     </section>
   )
 }

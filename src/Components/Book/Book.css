@@ -17,15 +17,20 @@
 
 .card-text {
   font-family: 'Amatic SC', cursive;
-  font-size: 28px;
   align-self: left;
+  font-size: 28px;
   margin: 0;
   margin-left: 20px;
 }
 
 .title-text {
   margin-top: 10px;
+  font-size: 32px;
 }
+
+.author-text {
+  font-size: 28px;
+} 
 
 .Book-card-image {
   width: 240px;
