@@ -17,9 +17,10 @@
 
 .card-text {
   font-family: 'Amatic SC', cursive;
-  font-size: 26px;
-  align-self: center;
+  font-size: 28px;
+  align-self: left;
   margin: 0;
+  margin-left: 20px;
 }
 
 .title-text {
