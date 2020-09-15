@@ -1,12 +1,10 @@
 import React from 'react';
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ReadingListBook from '../ReadingListBook/ReadingListBook'
 import { MemoryRouter } from 'react-router-dom';
 import { removeFavorite } from '../../actions'
 import { Provider } from 'react-redux';
-
-
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -53,7 +51,8 @@ describe('ReadingListBook component', () => {
     expect(removeButton).toBeInTheDocument();
   })
 
-  it('should invoke action to remove book from store when button is clicked', () => {
+  it('should invoke redux action to remove book from store when button is clicked', () => {
+
     const id = "015489213"
     const removeButton = screen.getByRole('button', { name: 'Remove' })
     fireEvent.click(removeButton)
