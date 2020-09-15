@@ -5,6 +5,7 @@ import Nav from '../Nav/Nav'
 import Search from '../Search/Search'
 import BookInfo from '../BookInfo/BookInfo'
 import ReadingList from '../ReadingList/ReadingList'
+import './App.css'
 import { fetchBooks } from '../../API';
 import { connect } from 'react-redux'
 import { setBooks, setList } from '../../actions';
@@ -65,8 +66,10 @@ class App extends Component {
   }
 
   searchBooks = (search) => {
+    const titleSearch = search.toUpperCase()
+    const authorSearch = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase() 
     let findBooks = this.props.books.filter(book => {
-      if (book.title.includes(search) || book.author.includes(search)) {
+      if (book.title.includes(titleSearch) || book.author.includes(authorSearch)) {
         this.setState({ foundBooks: [book] })
       }
     })
@@ -82,7 +85,7 @@ class App extends Component {
           <Switch>
             <Route exact path={'/'} render={() => {
               return (<>
-                <h1>Books!</h1>
+                <h1 className='browse-books'>Browse books</h1>
                 <Search searchBooks={this.searchBooks}/>
                 <section className="found-book-cards" alt="found-book-cards">
                   { this.state.foundBooks ? 
@@ -93,7 +96,7 @@ class App extends Component {
                         </>
                       )
                     }) : 
-                    <h1>Search For Book by Title or Author</h1>
+                    <h1 className='search-prompt'>Search For Book by Title or Author</h1>
                   }
                 </section>
                 {this.createBookLists()}
