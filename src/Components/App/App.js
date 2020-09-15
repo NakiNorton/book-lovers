@@ -33,9 +33,13 @@ class App extends Component {
     try {
       allListUrls.map(async url => {
         const response = await fetchBooks(url);
-        setBooks(response.results.books);
         const books = response.results.books;
-        return setList(url, books.map(book => book.primary_isbn10));
+        const newBooks = books.map(book => {
+          book.listName = url
+          return book
+        })
+        setBooks(newBooks);
+        return setList(url, newBooks.map(book => book.primary_isbn10));
       })
     }
     catch ({ message }) {
@@ -45,7 +49,11 @@ class App extends Component {
 
   filterBooks = (listName) => {
     const listOfIds = this.props.lists[listName]
-    const filteredBooks = this.props.books.filter(book => listOfIds.includes(book.primary_isbn10))
+    const filteredBooks = this.props.books.filter(book => {
+      if(listOfIds.includes(book.primary_isbn10) && book.listName === listName) {
+        return book
+      }
+    })
     return filteredBooks;
   }
 
