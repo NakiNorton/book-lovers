@@ -10,12 +10,13 @@ import { fetchBooks } from '../../API';
 import { connect } from 'react-redux'
 import { setBooks, setList } from '../../actions';
 import { bindActionCreators } from 'redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      foundBooks: [],
       lists: {
         'celebrities': true,
         'food-and-fitness': true,
@@ -70,7 +71,9 @@ class App extends Component {
     const authorSearch = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase() 
     let findBooks = this.props.books.filter(book => {
       if (book.title.includes(titleSearch) || book.author.includes(authorSearch)) {
+        console.log('found book', book)
         this.setState({ foundBooks: [book] })
+        console.log('state book', this.foundBooks)
       }
     })
     console.log(this.state.foundBooks)
@@ -92,7 +95,11 @@ class App extends Component {
                     this.state.foundBooks.map(foundBook => {
                       return (
                         <>
-                          <h1>{foundBook.title}</h1><h3>{foundBook.author}</h3><h3>Ranking: {foundBook.rank}</h3><img className="Book-card-image" alt="Book cover" src={foundBook.book_image} /> 
+                          <h1 className='found-book'>{foundBook.title}</h1>
+                          <h3 className='found-book author'>{foundBook.author}</h3>
+                          <Link to={`/${foundBook.primary_isbn10}`}>
+                            <img className="card-image" alt={foundBook.title} src={foundBook.book_image} />
+                          </Link>
                         </>
                       )
                     }) : 

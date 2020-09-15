@@ -10,13 +10,18 @@
   font-size: 80px;
   line-height: 2;
 }
-
+  
 .search-prompt {
   color: black;
-  font-weight: lighter;
   font-weight: 300;
   font-size: 22px;
 }
 
+.found-book {
+  font-weight: 300;
+}
 
+.author {
+  font-weight: 400;
+}
 
