@@ -7,8 +7,8 @@
 .card-image {
   border: solid 3px whitesmoke;
   margin-bottom: 1em;
-  width: 160px;
-  height: 240px;
+  width: 240px;
+  height: 380px;
 }
 
 .card-image:hover {

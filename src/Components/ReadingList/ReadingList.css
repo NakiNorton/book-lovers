@@ -1,15 +1,15 @@
 
 .ReadingList {
   background-color: seashell;
-  /* background-color: #C09081; */
+  min-height: 80em;
   margin: 0;
 }
 
 .page-title {
   font-family: 'Amatic SC', cursive;
   color: #C09081;
-  font-size: 46px;
-  line-height: 0; /* I don't think this is the best way but it works -nl */
+  font-size: 80px;
+  line-height: 40px; /* I don't think this is the best way but it works -nl */
 }
 
 .reading-list-section {
@@ -20,6 +20,7 @@
   font-size: 14px;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
+  justify-content: center;
   margin: auto;
   max-width: 1000px;
 }
@@ -131,27 +132,27 @@
 
 .face{
   animation: face 7s infinite;
-  animation-delay:2s;
+  animation-delay:1s;
 }
 
 .mouth{
   animation: mouth 7s infinite;
-  animation-delay:2s;
+  animation-delay:1s;
 }
 
 .tear{
   animation: tear 7s infinite;
-  animation-delay:2s;
+  animation-delay:1s;
 }
 
 .eye{
   animation: cry 7s infinite;
-  animation-delay:2s;
+  animation-delay:1s;
 }
 
 .eyebrow{
   animation: eyebrow 7s infinite;
-  animation-delay:2s;
+  animation-delay:1s;
 }
 
 @media only screen and (max-width: 1000px) {

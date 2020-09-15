@@ -14,10 +14,14 @@
   margin: 2%;
   margin-top: 0.5%;
   padding-top: 1%;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
+  margin-bottom: 5%;
 }
 
 .books-list-name {
+  color: teal;
   margin: 0;
   margin-left: 2%;
+  font-size: 36px;
+  font-weight: 300;
 }

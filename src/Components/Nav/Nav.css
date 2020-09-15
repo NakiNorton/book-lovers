@@ -33,12 +33,11 @@ nav ul li {
 
 .nav-link:hover {
   background:  #F4DBD8;
-  transition: 0.5s;
+  /* transition: 0.5s; */
+  color: teal;
+  border: none;
 }
 
-.icon-and-logo {
-  /* width: 300px; */
-}
 
 label {
   font-family: 'Amatic SC', cursive;
@@ -62,8 +61,6 @@ label {
  .nyt-icon {
   height: 30px;
   width: auto;
-  /* margin-left: -10em;
-  margin-right: 30em; */
  }
 
 @media only screen and (max-width: 800px) {

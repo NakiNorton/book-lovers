@@ -6,8 +6,7 @@
   border-radius: 6px;
   font-weight: 300;
   align-self: center;
-  border: 1px solid black;
-
+  border: 2px solid teal;
 }
 
 .search-input:hover,
@@ -18,19 +17,18 @@
 
 .search-button {
   align-self: center;
-  width: 7.8%;
+  width: 4.5%;
   margin: .5vh;
   padding: 4.8px;
-  border: 1px solid black;
+  border: 2px solid teal;
   border-radius: 6px;
-  background-color: white;
-  color: #252323;
+  background-color: teal;
+  color: white;
   font-size: 17.2px;
 }
 
 .search-button:hover {
-  background-color:#F4DBD8;
-  color: #252323;
-  border: solid 1px  black;
-  box-shadow: 2px 2px 15px  whitesmoke;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 2px 2px 15px  teal;
 }
