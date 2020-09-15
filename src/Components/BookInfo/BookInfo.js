@@ -16,8 +16,8 @@ const BookInfo = ({ book, addBook }) => {
           <p className="desciption-text">{book.description}</p>
         </div>
         <div className="button-container">
-          <button className="add-to-reading-list active" id={book.primary_isbn10} onClick={addBook} >Read</button>
-          <a href={book.amazon_product_url} target="_blank"><button className="purchase">Purchase</button></a>
+          <button className="add-to-reading-list active" id={book.primary_isbn10} onClick={addBook}>Read</button>
+          <a href={book.amazon_product_url}><button className="purchase">Purchase</button></a>
         </div>
       </section>
     </>
