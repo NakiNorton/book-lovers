@@ -8,7 +8,7 @@ import ReadingList from '../ReadingList/ReadingList'
 import './App.css'
 import { fetchBooks } from '../../API';
 import { connect } from 'react-redux'
-import { setBooks, setList } from '../../actions';
+import { setBooks, setList, addFavorite } from '../../actions';
 import { bindActionCreators } from 'redux';
 import { Route, Switch, Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
       foundBooks: [],
-      lists: {
+      listPaths: {
         'celebrities': true,
         'food-and-fitness': true,
         'hardcover-fiction': true,
@@ -29,13 +29,12 @@ class App extends Component {
 
   componentDidMount() {
     const { setBooks, setList } = this.props
-    const allListUrls = Object.keys(this.state.lists)
+    const allListUrls = Object.keys(this.state.listPaths)
     try {
       allListUrls.map(async url => {
         const response = await fetchBooks(url);
         setBooks(response.results.books);
         const books = response.results.books;
-        console.log('books after setBooks', books)
         return setList(url, books.map(book => book.primary_isbn10));
       })
     }
@@ -47,7 +46,6 @@ class App extends Component {
   filterBooks = (listName) => {
     const listOfIds = this.props.lists[listName]
     const filteredBooks = this.props.books.filter(book => listOfIds.includes(book.primary_isbn10))
-    console.log('filtered books from filterBooks', filteredBooks)
     return filteredBooks;
   }
 
@@ -56,12 +54,9 @@ class App extends Component {
     const listsKeys = Object.keys(listUrls);
     const listBooks = listsKeys.map(listName => {
       const filteredBooks = this.filterBooks(listName)
-      console.log('filtered books from createBookLists', filteredBooks)
-      if(filteredBooks.length > 0) {
-        return (
-          <Books key={listName} id={listName} listName={listName} filteredBooks={filteredBooks}/>
-        )
-      }
+      return (
+        <Books key={listName} id={listName} listName={listName} filteredBooks={filteredBooks} addBook={this.handleClick}/>
+      )
     })
     return listBooks
   }
@@ -76,8 +71,33 @@ class App extends Component {
         console.log('state book', this.foundBooks)
       }
     })
-    console.log(this.state.foundBooks)
     return findBooks;
+  }
+
+  changeButtonStyling(id) {
+    const allButtons = document.querySelectorAll('.add-to-reading-list')
+    const foundButton = Array.from(allButtons).find(button => button.id === id)
+    if (foundButton.classList.contains('active')) {
+      foundButton.classList.remove('active')
+      foundButton.classList.add('inactive')
+    } else if (foundButton.classList.contains('inactive')) {
+      foundButton.classList.remove('inactive')
+      foundButton.classList.add('active')
+    }
+  }
+
+  handleClick = (event) => {
+    const { addFavorite, readingList, books } = this.props;
+    const id = event.target.id;
+    const foundBook = books.find(book => book.primary_isbn10 === id);
+    const isOnList = readingList.includes(foundBook)
+
+    if (!isOnList) {
+      addFavorite(foundBook) 
+      this.changeButtonStyling(id)
+    } else {
+      this.changeButtonStyling(id)
+    }
   }
 
   render() {
@@ -115,7 +135,7 @@ class App extends Component {
             } />
             <Route exact path='/:bookId' render={({ match }) => {
               const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
-              return <BookInfo book={bookClicked} /> }}
+              return <BookInfo book={bookClicked} addBook={this.handleClick} /> }}
             />
           </Switch>
       </div>
@@ -132,7 +152,8 @@ export const mapStateToProps = ({ books, readingList, lists }) => ({
 export const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setBooks,
-    setList
+    setList,
+    addFavorite
   }, dispatch)
 )
 

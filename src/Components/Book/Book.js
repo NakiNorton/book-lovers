@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './Book.css'
+import '../BookInfo/BookInfo.css'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -10,7 +11,8 @@ const Book = ({ book, addBook }) => {
     <section className="book-card">
         <div className="card-header">
           <h3 className="card-text">#{book.rank}</h3>
-          <button id={book.primary_isbn10} onClick={addBook} className="reading-list-button active">Read</button>
+
+          <button id={book.primary_isbn10} onClick={addBook} className="add-to-reading-list active">Read</button>
         </div>
         <Link to={`/${book.primary_isbn10}`}>
           <img className="Book-card-image" alt={book.title} src={book.book_image} />

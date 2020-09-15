@@ -2,7 +2,7 @@ import React from 'react'
 import './BookInfo.css'
 import PropTypes from 'prop-types'
 
-const BookInfo = ({ book }) => {
+const BookInfo = ({ book, addBook }) => {
   return (
     <>
       <h1 className="book-details">Book Details</h1>
@@ -16,7 +16,7 @@ const BookInfo = ({ book }) => {
           <p className="desciption-text">{book.description}</p>
         </div>
         <div className="button-container">
-          <button className="add-to-reading-list">Read</button>
+          <button className="add-to-reading-list active" id={book.primary_isbn10} onClick={addBook} >Read</button>
           <a href={book.amazon_product_url} target="_blank"><button className="purchase">Purchase</button></a>
         </div>
       </section>

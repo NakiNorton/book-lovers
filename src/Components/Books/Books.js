@@ -31,40 +31,13 @@ class Books extends Component {
 
   displayBooks() {
     return this.state.books.map(book => {
-      return <Book book={book} addBook={this.handleClick}/>
+      return <Book book={book} addBook={this.props.addBook}/>
     })
-  }
-
-  changeButtonStyling(id) {
-    const allButtons = document.querySelectorAll('.reading-list-button')
-    const foundButton = Array.from(allButtons).find(button => button.id === id)
-    if (foundButton.classList.contains('active')) {
-      foundButton.classList.remove('active')
-      foundButton.classList.add('inactive')
-    } else if (foundButton.classList.contains('inactive')) {
-      foundButton.classList.remove('inactive')
-      foundButton.classList.add('active')
-    }
-  }
-
-  handleClick = (event) => {
-    const { addFavorite, readingList, books } = this.props;
-    const id = event.target.id;
-    const foundBook = books.find(book => book.primary_isbn10 === id);
-    const isOnList = readingList.includes(foundBook)
-
-    if (!isOnList) {
-      addFavorite(foundBook) 
-      this.changeButtonStyling(id)
-    } else {
-      this.changeButtonStyling(id)
-    }
   }
 
   render() {
     const { books } = this.props
     let bookCards = this.displayBooks()
-    console.log(bookCards)
     return (
       <section>
         <div className="books-list">

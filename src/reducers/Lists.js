@@ -9,8 +9,9 @@ const initState = {
 export const lists = (state = initState, action) => {
     switch(action.type) {
         case 'SET_LIST':
-            state[action.listName] = action.idNumbers;
-            return state
+            const newState = {...state};
+            newState[action.listName] = action.idNumbers;
+            return newState
         default:
             return state
     }
