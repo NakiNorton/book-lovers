@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Search.css'
+import PropTypes from 'prop-types'
 
 class Search extends Component {
   constructor(props) {
@@ -30,6 +31,10 @@ class Search extends Component {
       </section>
     )
   }
+}
+
+Search.propTypes = {
+  searchBooks: PropTypes.func
 }
 
 export default Search

@@ -4,37 +4,24 @@
   min-width: 401px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.browse-books {
+  font-family: 'Amatic SC', cursive;
+  color: #C09081;
+  font-size: 80px;
+  line-height: 2;
+}
+  
+.search-prompt {
+  color: black;
+  font-weight: 300;
+  font-size: 22px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.found-book {
+  font-weight: 300;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.author {
+  font-weight: 400;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

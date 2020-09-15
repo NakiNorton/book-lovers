@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Books.css'
 import { fetchBooks } from '../../API'
 import Book from '../Book/Book'
+import PropTypes from 'prop-types';
 
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
@@ -46,6 +47,13 @@ class Books extends Component {
       </section>
     )
   }
+}
+
+Books.propTypes = {
+  readingList: PropTypes.array,
+  books: PropTypes.array,
+  lists: PropTypes.array,
+  filteredBooks: PropTypes.array,
 }
 
 export const mapStateToProps = ({ books, lists, readingList }) => ({

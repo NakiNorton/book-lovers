@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './Book.css'
 import '../BookInfo/BookInfo.css'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 const Book = ({ book, addBook }) => {
@@ -17,9 +18,14 @@ const Book = ({ book, addBook }) => {
           <img className="Book-card-image" alt={book.title} src={book.book_image} />
         </Link>
         <h1 className="card-text title-text">{book.title}</h1>
-        <h4 className="card-text">by {book.author}</h4>
+        <h4 className="card-text author-text">by {book.author}</h4>
     </section>
   )
+}
+
+Book.propTypes = {
+  book: PropTypes.object,
+  addBook: PropTypes.func
 }
 
 export default Book

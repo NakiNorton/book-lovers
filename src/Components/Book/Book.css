@@ -4,7 +4,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 300px;
   border-right: rgb(190, 168, 167, 0.5) 1px solid 
 }
 
@@ -17,18 +17,24 @@
 
 .card-text {
   font-family: 'Amatic SC', cursive;
-  font-size: 26px;
-  align-self: center;
+  align-self: left;
+  font-size: 28px;
   margin: 0;
+  margin-left: 20px;
 }
 
 .title-text {
   margin-top: 10px;
+  font-size: 32px;
 }
 
+.author-text {
+  font-size: 28px;
+} 
+
 .Book-card-image {
-  width: 160px;
-  height: 240px;
+  width: 240px;
+  height: 380px;
   padding: 20px;
 }
 

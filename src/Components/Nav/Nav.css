@@ -33,12 +33,11 @@ nav ul li {
 
 .nav-link:hover {
   background:  #F4DBD8;
-  transition: 0.5s;
+  /* transition: 0.5s; */
+  color: teal;
+  border: none;
 }
 
-.icon-and-logo {
-  /* width: 300px; */
-}
 
 label {
   font-family: 'Amatic SC', cursive;
@@ -53,6 +52,16 @@ label {
   height: 58px;
   padding-left: 1.5em;  
 }
+
+.book-icon {
+  height: 58px;
+  padding-left: 1.5em;
+ }
+
+ .nyt-icon {
+  height: 30px;
+  width: auto;
+ }
 
 @media only screen and (max-width: 800px) {
   .Nav {
