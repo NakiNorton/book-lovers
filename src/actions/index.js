@@ -3,6 +3,12 @@ export const setBooks = (books) => ({
     books
 });
 
+export const setList = (listName, idNumbers) => ({
+  type: 'SET_LIST',
+  listName,
+  idNumbers
+})
+
 export const addFavorite = (book) => ({
   type: 'ADD_TO_READING_LIST',
   book

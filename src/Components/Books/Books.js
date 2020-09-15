@@ -1,32 +1,37 @@
 import React, { Component } from 'react'
 import './Books.css'
-import { fetchAllBooks } from '../../API'
+import { fetchBooks } from '../../API'
 import Book from '../Book/Book'
-import ReadingList from '../ReadingList/ReadingList'
-import Search from '../Search/Search'
+
 import BookInfo from '../BookInfo/BookInfo'
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { setBooks, addFavorite } from '../../actions';
+import { setBooks, addFavorite, setList } from '../../actions';
 import { bindActionCreators } from 'redux';
 
 class Books extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
+      books: [],
       foundBooks: [],
     }
   }
 
-  async componentDidMount() {
-    const { setBooks } = this.props;
-    try {
-      const books = await fetchAllBooks()
-      setBooks(books.results.books)
+  componentDidMount() {
+    this.setState({ books: this.props.filteredBooks })
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.filteredBooks !== prevProps.filteredBooks) {
+      this.setState({ books: this.props.filteredBooks })
     }
-    catch ({ message }) {
-      alert(message);
-    }
+  }
+
+  displayBooks() {
+    return this.state.books.map(book => {
+      return <Book book={book} addBook={this.handleClick}/>
+    })
   }
 
   changeButtonStyling(id) {
@@ -42,10 +47,10 @@ class Books extends Component {
   }
 
   handleClick = (event) => {
-    const { addFavorite } = this.props;
+    const { addFavorite, readingList, books } = this.props;
     const id = event.target.id;
-    const foundBook = this.props.books.find(book => book.primary_isbn10 === id);
-    const isOnList = this.props.readingList.includes(foundBook)
+    const foundBook = books.find(book => book.primary_isbn10 === id);
+    const isOnList = readingList.includes(foundBook)
 
     if (!isOnList) {
       addFavorite(foundBook) 
@@ -55,69 +60,32 @@ class Books extends Component {
     }
   }
 
-  displayBooks() {
-    return this.props.books.map(book => {
-      return <Book book={book} addBook={this.handleClick} />
-    })
-  }
-
-  searchBooks = (search) => {
-    let findBook = this.props.books.filter(book => {
-      if (book.title.includes(search.toUpperCase()) || book.author.includes(search)) {
-        this.setState({ foundBooks: [book] });
-      }
-    })
-    return findBook
-  }
-
   render() {
     const { books } = this.props
     let bookCards = this.displayBooks()
+    console.log(bookCards)
     return (
-      <Switch>
-        <Route exact path='/favorites' render={() =>
-          <ReadingList /> } 
-        />
-        <Route exact path='/'render= {() => {
-          return (
-            <section>
-              <h1 className="browse-books">Browse Books</h1>
-              <Search searchBooks={this.searchBooks}/>
-              <section className="found-book-cards" alt="found-book-cards">
-                { this.state.foundBooks ? 
-                  this.state.foundBooks.map(foundBook => {
-                    return (
-                        <Book book={foundBook} addBook={this.handleClick}/> 
-                    )
-                  }) : 
-                  <h1>Search For Book by Title or Author</h1>
-                }
-              </section>
-              <div className="books-list">
-                <h3 className="books-list-name">**Insert List Name**</h3>
-                <div className="books-container">{books && bookCards}</div>
-              </div>
-            </section>
-          )
-        }} />
-        <Route exact path='/:bookId' render={({ match }) => {
-          const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
-          return <BookInfo book={bookClicked} />
-        }} />
-      </Switch>
+      <section>
+        <div className="books-list">
+          <h3 className="books-list-name">{this.props.id}</h3>
+          <div className="books-container">{books && bookCards}</div>
+        </div>
+      </section>
     )
   }
 }
 
-export const mapStateToProps = ({ books, readingList }) => ({
+export const mapStateToProps = ({ books, lists, readingList }) => ({
   books,
+  lists,
   readingList
 })
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setBooks,
-    addFavorite
+    addFavorite,
+    setList
   }, dispatch)
 )
 

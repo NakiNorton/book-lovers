@@ -1,7 +1,8 @@
 export const books = (state = [], action) => {
     switch(action.type) {
         case 'SET_BOOKS':
-            return action.books
+            const newState = [...state, ...action.books]
+            return newState
         default: 
             return state
     }

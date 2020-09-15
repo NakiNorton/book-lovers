@@ -5,7 +5,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import { rootReducer } from '../../reducers/index';
 import { Provider } from 'react-redux'
-import { fetchAllBooks } from '../../API';
 jest.mock('../../API');
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -29,12 +28,9 @@ describe('Books Component', () => {
   })
 
   it('Should render book cards', async () => {
-
-    fetchAllBooks.mockResolvedValue(fetchedBooks);
-
     // const store = createStore(rootReducer);
     const store = mockStore({
-      books:fetchedBooks
+      books: fetchedBooks
     }
 
     );

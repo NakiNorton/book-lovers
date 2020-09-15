@@ -27,7 +27,7 @@ describe('Book Info Component', () => {
     const title = screen.getByRole('heading', { name: 'WHERE THE CRAWDADS SING' });
     const author = screen.getByRole('heading', { name: 'Delia Owens' })
     const description = screen.getByText('In a quiet town...')
-    const readButton = screen.getByRole('button', { name: 'Add to Reading List' })
+    const readButton = screen.getByRole('button', { name: 'Read' })
     const purchaseButton = screen.getByRole('button', { name: 'Purchase' })
 
     expect(image).toBeInTheDocument();
