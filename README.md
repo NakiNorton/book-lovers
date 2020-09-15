@@ -13,6 +13,14 @@ Read Me is a web application we built that connects users to various New York Ti
     - React Testing Library
     - Jest
 
+## Installation Instructions
+- Clone down the repo from: https://github.com/NakiNorton/book-lovers
+    - When you run git clone, you can name the project as you choose like this (you replace the `[...]` with the terminal command arguments): `git clone git@github.com:NakiNorton/book-lovers.git [...]`
+- Run `npm install` to update dependencies
+- To verify that everything is set up correctly, run `npm start` in the terminal. Visit `http://localhost:3000/` in the browser (or whichever port is provided!) to visit the deployed application.
+
+## Project in Action
+
 ## Contributors:
 Amy Karanze: [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/)
 Nicole Latifi: [GitHub](https://github.com/NicoleLatifi) | [LinkedIn](https://www.linkedin.com/in/nicole-latifi/)
