@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import './Books.css'
-import { fetchBooks } from '../../API'
 import Book from '../Book/Book'
 import PropTypes from 'prop-types';
-
-import BookInfo from '../BookInfo/BookInfo'
-import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { setBooks, addFavorite, setList } from '../../actions';
+import { setBooks, addFavorite } from '../../actions';
 import { bindActionCreators } from 'redux';
 
 class Books extends Component {
@@ -15,7 +11,6 @@ class Books extends Component {
     super(props)
     this.state = {
       books: [],
-      foundBooks: [],
     }
   }
 
@@ -52,13 +47,10 @@ class Books extends Component {
 Books.propTypes = {
   readingList: PropTypes.array,
   books: PropTypes.array,
-  lists: PropTypes.array,
-  filteredBooks: PropTypes.array,
 }
 
-export const mapStateToProps = ({ books, lists, readingList }) => ({
+export const mapStateToProps = ({ books, readingList }) => ({
   books,
-  lists,
   readingList
 })
 
@@ -66,7 +58,6 @@ export const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setBooks,
     addFavorite,
-    setList
   }, dispatch)
 )
 
