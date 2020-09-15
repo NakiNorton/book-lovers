@@ -65,8 +65,15 @@
   width: 100px;
 }
 
-.add-to-reading-list:hover, .purchase:hover {
+.active:hover {
   background-color: teal;
+  color: white;
+  border: solid 1px  white;
+  box-shadow: 2px 2px 15px  whitesmoke;
+}
+
+.inactive {
+  background-color: gray;
   color: white;
   border: solid 1px  white;
   box-shadow: 2px 2px 15px  whitesmoke;
