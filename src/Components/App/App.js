@@ -15,7 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      lists: {
+      listPaths: {
         'celebrities': true,
         'food-and-fitness': true,
         'hardcover-fiction': true,
@@ -27,13 +27,12 @@ class App extends Component {
 
   componentDidMount() {
     const { setBooks, setList } = this.props
-    const allListUrls = Object.keys(this.state.lists)
+    const allListUrls = Object.keys(this.state.listPaths)
     try {
       allListUrls.map(async url => {
         const response = await fetchBooks(url);
         setBooks(response.results.books);
         const books = response.results.books;
-        console.log('books after setBooks', books)
         return setList(url, books.map(book => book.primary_isbn10));
       })
     }
@@ -45,7 +44,6 @@ class App extends Component {
   filterBooks = (listName) => {
     const listOfIds = this.props.lists[listName]
     const filteredBooks = this.props.books.filter(book => listOfIds.includes(book.primary_isbn10))
-    console.log('filtered books from filterBooks', filteredBooks)
     return filteredBooks;
   }
 
@@ -54,12 +52,9 @@ class App extends Component {
     const listsKeys = Object.keys(listUrls);
     const listBooks = listsKeys.map(listName => {
       const filteredBooks = this.filterBooks(listName)
-      console.log('filtered books from createBookLists', filteredBooks)
-      if(filteredBooks.length > 0) {
-        return (
-          <Books key={listName} id={listName} listName={listName} filteredBooks={filteredBooks}/>
-        )
-      }
+      return (
+        <Books key={listName} id={listName} listName={listName} filteredBooks={filteredBooks}/>
+      )
     })
     return listBooks
   }
@@ -70,7 +65,6 @@ class App extends Component {
         this.setState({ foundBooks: [book] })
       }
     })
-    console.log(this.state.foundBooks)
     return findBooks;
   }
 
