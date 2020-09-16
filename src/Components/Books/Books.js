@@ -45,13 +45,11 @@ class Books extends Component {
 }
 
 Books.propTypes = {
-  readingList: PropTypes.array,
   books: PropTypes.array,
 }
 
-export const mapStateToProps = ({ books, readingList }) => ({
+export const mapStateToProps = ({ books }) => ({
   books,
-  readingList
 })
 
 export const mapDispatchToProps = dispatch => (
