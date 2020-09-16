@@ -21,6 +21,9 @@ Read Me is a web application we built that connects users to various New York Ti
 
 ## Project in Action
 
+A user can select and remove books they hope to read:
+![Favorite and rate](https://media.giphy.com/media/hTfMSWDKHygLbrbXPS/giphy.gif)
+
 ## Contributors:
 Amy Karanze: [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/)
 Nicole Latifi: [GitHub](https://github.com/NicoleLatifi) | [LinkedIn](https://www.linkedin.com/in/nicole-latifi/)
