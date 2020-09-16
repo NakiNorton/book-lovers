@@ -28,7 +28,7 @@ describe('ReadingList component', () => {
     expect(pageHeading).toBeInTheDocument();
   })
 
-  it('should display books saved to the reading list', () => {
+  it('should render books saved to the reading list', () => {
     let store = mockStore({
       readingList: [
         {
@@ -48,8 +48,8 @@ describe('ReadingList component', () => {
       </Provider>
     )
 
-    const bookTitle = screen.getByAltText('WHERE THE CRAWDADS SING')
-    expect(bookTitle).toBeInTheDocument();
+    const bookCoverImg = screen.getByAltText('WHERE THE CRAWDADS SING')
+    expect(bookCoverImg).toBeInTheDocument();
   })
 })
 
@@ -66,6 +66,8 @@ describe('ReadingList component', () => {
     )
 
     const message = screen.getByText('You haven\'t added any books to your reading list yet.')
+    const animation = screen.getByLabelText('animation of crying face')
     expect(message).toBeInTheDocument();
+    expect(animation).toBeInTheDocument();
   })
 })

@@ -74,9 +74,7 @@ class App extends Component {
     const authorSearch = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase() 
     let findBooks = this.props.books.filter(book => {
       if (book.title.includes(titleSearch) || book.author.includes(authorSearch)) {
-        console.log('found book', book)
         this.setState({ foundBooks: [book] })
-        console.log('state book', this.foundBooks)
       }
     })
     return findBooks;

@@ -1,7 +1,10 @@
 import React from 'react';
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import BookInfo from './BookInfo.js'
 import { MemoryRouter } from 'react-router-dom';
+
+
 
 describe('Book Info Component', () => {
   let book;
@@ -17,9 +20,14 @@ describe('Book Info Component', () => {
 
   it('Should have the correct content when rendered', () => {
 
+    const mockAddBook = jest.fn()
+
     render(
       <MemoryRouter>
-        <BookInfo book={book} />
+        <BookInfo 
+        book={book} 
+        addBook={mockAddBook}
+        />
       </MemoryRouter>
     )
 
@@ -38,17 +46,23 @@ describe('Book Info Component', () => {
     expect(purchaseButton).toBeInTheDocument();
   })
 
-  it.skip('Should fire the correct function when read button is clicked', () => {
+  it('Should fire the correct function when read button is clicked', () => {
+    
+    const mockAddBook = jest.fn()
+    
     render(
       <MemoryRouter>
-        <BookInfo book={book} />
+        <BookInfo
+          book={book}
+          addBook={mockAddBook}
+        />
       </MemoryRouter>
     )
 
-    const readButton = screen.getByRole('button', { name: 'Add to Reading List' })
+    const readButton = screen.getByRole('button', { name: 'Read' })
 
     fireEvent.click(readButton)
 
-    expect().toBeCalledTimes(1);
+    expect(mockAddBook).toBeCalledTimes(1);
   })
 })

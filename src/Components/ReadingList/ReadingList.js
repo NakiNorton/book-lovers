@@ -21,7 +21,8 @@ const ReadingList = ({ readingList }) => {
       {readingList.length === 0 &&
       <section>
         <h3 className='no-books-msg'>You haven't added any books to your reading list yet. </h3>
-        <div className='ani-container'>
+        <section aria-label='animation of crying face'
+        className='ani-container'>
           <div className='tear1 tear'></div>
           <div className='tear2 tear'></div>
           <div className='face'>
@@ -31,7 +32,7 @@ const ReadingList = ({ readingList }) => {
             <div className='eye'></div>
             <div className='mouth'></div>
           </div>
-        </div> 
+        </section> 
         </section>
       }
       <section className="reading-list-section">

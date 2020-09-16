@@ -6,6 +6,8 @@ export const fetchBooks = (listName) => {
   .then(response => {
     if (response.ok) {
       return response.json()
+    } else {
+    alert('Sorry, error loading books')
     }
   })
 }

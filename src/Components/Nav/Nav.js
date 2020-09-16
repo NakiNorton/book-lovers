@@ -9,7 +9,7 @@ const Nav = () => {
     <nav className='Nav'>
     <span className="icon-and-logo">
       <img className='icon' alt='book icon' src={bookIcon} />
-      <label className='app-logo'>Book Lovers</label>
+      <label className='app-logo'>ReadMe</label>
     </span>
       <ul>
         <li><NavLink to='/' className='nav-link home-link' aria-label='navigate to home page'>HOME</NavLink></li>
