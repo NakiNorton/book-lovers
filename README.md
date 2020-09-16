@@ -23,8 +23,14 @@ ReadMe is a web application we built that connects users to various New York Tim
 
 ## Project in Action
 
-A user can select and remove books they hope to read:
-![Favorite and rate](https://media.giphy.com/media/hTfMSWDKHygLbrbXPS/giphy.gif)
+A user can select and remove books to a reading list:
+![Add and remove Books to reading list](https://media.giphy.com/media/hTfMSWDKHygLbrbXPS/giphy.gif)
+
+A user can be directed to a site to purchase book:
+![Add and remove Books to reading list](https://media.giphy.com/media/VJHR9uX1cJKMjzXRGh/giphy.gif)
+
+A user can search for a book and view book details:
+![Add and remove Books to reading list](https://media.giphy.com/media/J4a0yDg58Ou38lhUI7/giphy.gif)
 
 ## Contributors:
 Amy Karanze: [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/) <br>
