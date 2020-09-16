@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom'
-import { screen, render, waitFor, fireEvent } from '@testing-library/react'
+import { screen, render, fireEvent } from '@testing-library/react'
 import Book from './Book'
 import { MemoryRouter } from 'react-router-dom';
 import { createStore } from 'redux';

@@ -138,7 +138,7 @@ class App extends Component {
               <ReadingList readingList={readingList} /> 
             } />
             <Route exact path='/:bookId' render={({ match }) => {
-              const bookClicked = books.find((book) => book.primary_isbn10 === parseInt(match.params.bookId))
+              const bookClicked = books.find((book) => book.primary_isbn10 == parseInt(match.params.bookId))
               return <BookInfo book={bookClicked} addBook={this.handleClick} /> }}
             />
           </Switch>

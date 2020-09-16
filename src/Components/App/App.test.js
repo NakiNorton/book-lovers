@@ -55,7 +55,7 @@ describe('App Component', () => {
           ]
       }
     })
-  
+
     store.dispatch = jest.fn();
 
     render(

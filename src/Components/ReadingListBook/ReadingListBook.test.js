@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import { screen, render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ReadingListBook from '../ReadingListBook/ReadingListBook'
 import { MemoryRouter } from 'react-router-dom';
@@ -43,7 +43,6 @@ describe('ReadingListBook component', () => {
   })
 
  it('should display the correct content when rendered', () => {
-    
     const bookTitle = screen.getByAltText('WHERE THE CRAWDADS SING')
     const removeButton = screen.getByRole('button', {name: 'Remove'})
   
@@ -52,14 +51,12 @@ describe('ReadingListBook component', () => {
   })
 
   it('should invoke redux action to remove book from store when button is clicked', () => {
-
     const id = "015489213"
     const removeButton = screen.getByRole('button', { name: 'Remove' })
     fireEvent.click(removeButton)
 
     expect(store.dispatch).toHaveBeenCalledTimes(1);
-    expect(store.dispatch).toHaveBeenCalledWith(
-      removeFavorite(id));
+    expect(store.dispatch).toHaveBeenCalledWith(removeFavorite(id));
   })
 })
   

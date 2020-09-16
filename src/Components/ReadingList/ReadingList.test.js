@@ -15,7 +15,7 @@ const mockStore = configureMockStore(middlewares);
 describe('ReadingList component', () => {
   it('should display the page heading', () => {
     const store = createStore(rootReducer);
-    
+
     render(
       <Provider store={store}>
         <MemoryRouter>
