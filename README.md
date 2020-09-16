@@ -9,8 +9,10 @@ ReadMe is a web application we built that connects users to various New York Tim
 - Redux
 - React Router
 - JSX
+- CSS
 - Test driven development with:
-    - React Testing Library
+    - React testing library
+    - Redux mock store
     - Jest
 
 ## Installation Instructions
