@@ -19,35 +19,31 @@ describe('Nav component', () => {
     expect(readingListLink).toBeInTheDocument();
   })
 
-
-  // TESTS TO BE FINISHED ONCE COMPONENTS ARE CONNECTED AND RENDERING ----
-  it('should take the user to the homepage when the home button is clicked', () => {
-
+  it.skip('should take the user to the homepage when the home button is clicked', () => {
     render(
       <MemoryRouter>
         <Nav />
       </MemoryRouter>
     )
 
-    // const homeLink = screen.getByText('HOME')
-    // fireEvent.click(homeLink)
+    const homeLink = screen.getByText('HOME')
+    fireEvent.click(homeLink)
 
-    // const homeHeading = screen.getByText('Hiyas')
-    //  expect(homeHeading).toBeInTheDocument()
+    const homeHeading = screen.getByText('Hiyas')
+    expect(homeHeading).toBeInTheDocument()
 
   })
 
-  it('should take the user to the reading list page when the reading list button is clicked', () => {
-
+  it.skip('should take the user to the reading list page when the reading list button is clicked', () => {
     render(
       <MemoryRouter>
         <Nav />
       </MemoryRouter>
     )
 
-    // const readingListLink = screen.getByText('READING LIST')
-
-    // const readingListHeading = screen.getByText('')
-    // expect(readingListHeading).toBeInTheDocument()
+    const readingListLink = screen.getByText('READING LIST')
+    const readingListHeading = screen.getByText('')
+    expect(readingListHeading).toBeInTheDocument()
+    expect(readingListLink).toBeInTheDocument()
   })
 })

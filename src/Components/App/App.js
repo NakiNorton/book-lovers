@@ -50,9 +50,7 @@ class App extends Component {
   filterBooks = (listName) => {
     const listOfIds = this.props.lists[listName]
     const filteredBooks = this.props.books.filter(book => {
-      if(listOfIds.includes(book.primary_isbn10) && book.listName === listName) {
-        return book
-      }
+      return listOfIds.includes(book.primary_isbn10) && book.listName === listName
     })
     return filteredBooks;
   }
@@ -72,7 +70,7 @@ class App extends Component {
   searchBooks = (search) => {
     const titleSearch = search.toUpperCase()
     const authorSearch = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase() 
-    let findBooks = this.props.books.filter(book => {
+    let findBooks = this.props.books.forEach(book => {
       if (book.title.includes(titleSearch) || book.author.includes(authorSearch)) {
         this.setState({ foundBooks: [book] })
       }
