@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
 import './Book.css'
 import '../BookInfo/BookInfo.css'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 
 const Book = ({ book, addBook }) => {
   return (

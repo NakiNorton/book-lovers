@@ -1,8 +1,8 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import bookIcon from '../../assets/book.png'
-import nytIcon from '../../assets/NYT_API.png'
-import './Nav.css'  
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import bookIcon from '../../assets/book.png';
+import nytIcon from '../../assets/NYT_API.png';
+import './Nav.css';
 
 const Nav = () => {
   return (
@@ -21,8 +21,6 @@ const Nav = () => {
     </nav>
   )
 }
-
-
 
 export default Nav
 

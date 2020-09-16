@@ -25,8 +25,8 @@ class Books extends Component {
   }
 
   displayBooks() {
-    return this.state.books.map(book => {
-      return <Book book={book} addBook={this.props.addBook}/>
+    return this.state.books.map((book, i) => {
+      return <Book book={book} key={i} addBook={this.props.addBook}/>
     })
   }
 
@@ -35,9 +35,9 @@ class Books extends Component {
     let bookCards = this.displayBooks()
     return (
       <section>
-        <div className="books-list">
-          <h3 className="books-list-name">{this.props.id}</h3>
-          <div className="books-container">{books && bookCards}</div>
+        <div className='books-list'>
+          <h3 className='books-list-name'>{this.props.id}</h3>
+          <div className='books-container'>{books && bookCards}</div>
         </div>
       </section>
     )
