@@ -25,7 +25,7 @@ A user can select and remove books they hope to read:
 ![Favorite and rate](https://media.giphy.com/media/hTfMSWDKHygLbrbXPS/giphy.gif)
 
 ## Contributors:
-Amy Karanze: [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/)
-Nicole Latifi: [GitHub](https://github.com/NicoleLatifi) | [LinkedIn](https://www.linkedin.com/in/nicole-latifi/)
-Stephanie Norton: [GitHub](https://github.com/NakiNorton) | [LinkedIn](https://www.linkedin.com/in/stephanie-norton-12888453/)
+Amy Karanze: [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/) <br>
+Nicole Latifi: [GitHub](https://github.com/NicoleLatifi) | [LinkedIn](https://www.linkedin.com/in/nicole-latifi/) <br>
+Stephanie Norton: [GitHub](https://github.com/NakiNorton) | [LinkedIn](https://www.linkedin.com/in/stephanie-norton-12888453/) <br>
 Jake West: [GitHub](https://github.com/jkwest-93) | [LinkedIn](https://www.linkedin.com/in/jake-west-3840b71b4/)
