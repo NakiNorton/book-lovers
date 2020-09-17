@@ -8,9 +8,9 @@
   font-family: 'Amatic SC', cursive;
   color: #C09081;
   font-size: 80px;
-  line-height: 2;
+  line-height: 40px;
 }
-  
+
 .search-prompt {
   color: black;
   font-weight: 300;
@@ -24,4 +24,3 @@
 .author {
   font-weight: 400;
 }
-
