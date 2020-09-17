@@ -17,7 +17,7 @@
 
 .search-button {
   align-self: center;
-  width: 4.5%;
+  /* width: 4.5%; */
   margin: .5vh;
   padding: 4.8px;
   border: 2px solid teal;
