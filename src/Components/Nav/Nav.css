@@ -1,11 +1,8 @@
 .Nav {
   height: 130px;
   width: 100%;
-  border-bottom: 1px solid #bea8A7; 
+  border-bottom: 1px solid #bea8A7;
   background-color: whitesmoke;
-  /* display: flex;
-  align-items: center; */
-  /* min-width: 401px; */
 }
 
 nav ul {
@@ -15,7 +12,6 @@ nav ul {
 
 nav ul li {
   display: inline-block;
-  /* line-height: 120px; */
   margin: 0 5px;
 }
 
@@ -33,15 +29,17 @@ nav ul li {
 
 .nav-link:hover {
   background:  #F4DBD8;
-  /* transition: 0.5s; */
   color: teal;
   border: none;
 }
 
+.icon-and-logo {
+  float: left;
+}
 
 label {
   font-family: 'Amatic SC', cursive;
-  color:  teal; 
+  color:  teal;
   font-size: 102px;
   line-height: 130px;
   padding: 0.3em;
@@ -50,39 +48,26 @@ label {
 
 .icon {
   height: 58px;
-  padding-left: 1.5em;  
-}
-
-.book-icon {
-  height: 58px;
   padding-left: 1.5em;
- }
+}
 
  .nyt-icon {
   height: 30px;
   width: auto;
  }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
   .Nav {
-    /* display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr; */
     height: 9em;
     padding-top: 30px;
   }
 
   .icon-and-logo {
+    float: none;
     grid-area: 1 / 1 / 2 / 3;
   }
 
-  /* .icon {
-    align-self: center;
-    justify-self: end;
-  } */
-
   label {
-    /* justify-self: start; */
     line-height: 60px;
     padding: 0;
     padding-left: 0.3em;
@@ -105,6 +90,3 @@ label {
     line-height: 60px;
   }
 }
-
-/* <div>Icons made by <a href="http://www.pixelinspired.com/" title="Zlatko Najdenovski">Zlatko Najdenovski</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */
-
