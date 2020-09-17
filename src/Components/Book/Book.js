@@ -8,8 +8,7 @@ const Book = ({ book, addBook }) => {
   return (
     <section className="book-card">
         <div className="card-header">
-          <h3 className="card-text">#{book.rank}</h3>
-
+          <h3 className="card-text rank">#{book.rank}</h3>
           <button id={book.primary_isbn10} onClick={addBook} className="add-to-reading-list active">Read</button>
         </div>
         <Link to={`/${book.primary_isbn10}`}>
